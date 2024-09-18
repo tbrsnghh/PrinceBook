@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import "../dist/css/adminlte.min.css";
-
+import logo from "../../../asset/img/logo.png";
 
 export default function Header() {
 
@@ -19,7 +19,7 @@ export default function Header() {
   return (
   <>
   
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
  
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -149,10 +149,10 @@ export default function Header() {
 
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"/>
+          <img src={logo} class="img-circle elevation-2" alt="User Image"/>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Admin</a>
         </div>
       </div>
 
@@ -183,18 +183,7 @@ export default function Header() {
                   <p>Sửa Danh mục </p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
+              
             </ul>
           </li>
           
@@ -213,24 +202,7 @@ export default function Header() {
                   <p>Sliders</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/UI/modals.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/navbar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/timeline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
+              
             </ul>
           </li>
           <li className={`nav-item has-treeview ${openMenu === 3 ? 'menu-open' : ''}`}>

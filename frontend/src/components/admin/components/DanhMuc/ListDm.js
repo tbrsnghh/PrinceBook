@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Table } from 'reactstrap';
-import Users from './Users';
-export default function ListUser() {
+import Users from './Dm';
+export default function ListDm() {
 
    
     return (
@@ -12,7 +12,7 @@ export default function ListUser() {
 
                 <div class="card card-primary mx-3">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sach user</h3>
+                        <h3 class="card-title">Danh sách danh mục </h3>
                     </div>
                     <Table
        
@@ -25,17 +25,13 @@ export default function ListUser() {
                                     #
                                 </th>
                                 <th>
-                                    Ten dang nhap
+                                    Tên danh mục
                                 </th>
                                 <th>
-                                    vai tro
+                                 hình ảnh 
                                 </th>
-                                <th>
-                                    dia chi
-                                </th>
-                                <th>
-                                    so dien thoai
-                                </th>
+                             
+                              
                                 <th>
                                     action
                                 </th>
@@ -43,13 +39,15 @@ export default function ListUser() {
                         </thead>
                         <tbody>
 
+                            {/* map danh muc */}
+
                             <Users/>
                            
 
                         </tbody>
                     </Table>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">them nguoi dung </button>
+                        <button type="submit" class="btn btn-primary">thêm danh mục </button>
                     </div>
                 </div>
             </div>
