@@ -1,21 +1,9 @@
 import React from 'react'
+import PromotionCard from './PromotionCard';
+import IconCard from './IconCard';
 const BannerMini = ({ src, alt }) => (
     <div className="flex-1">
         <img src={src} alt={alt} className="w-full rounded-lg" />
-    </div>
-);
-
-const PromotionCard = ({ bgColor, imgSrc, imgAlt, buttonText }) => (
-    <div className={`${bgColor} text-white p-4 rounded-lg`}>
-        <img src={imgSrc} alt={imgAlt} className="w-full rounded-lg mb-2" />
-        <button className="bg-red-700 w-full py-2 rounded-lg">{buttonText}</button>
-    </div>
-);
-
-const IconCard = ({ imgSrc, imgAlt, text }) => (
-    <div className="flex flex-col items-center">
-        <img src={imgSrc} alt={imgAlt} className="w-12 h-12 mb-2" />
-        <span>{text}</span>
     </div>
 );
 

@@ -1,0 +1,11 @@
+$background-cl1: #F6F5F2;
+$background-cl2: #181C14;
+@import '../../_variables.scss';
+footer {
+    //background-color: $background-cl1;
+    color: $font-color-black;
+}
+.allrights {
+    background-color: $background-cl2;
+    color: $font-color-white;
+}
