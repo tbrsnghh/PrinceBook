@@ -1,5 +1,13 @@
+@import '../../variables';
 $buttonColor: #000000;
 
 .pattern-icon{
     color: $buttonColor;
+}
+.button-2{
+    background-color: $button-cl-black;  
+    @apply text-white px-4 rounded-r-lg;
+    &:hover {  
+        background-color: $button-cl-gray; 
+      } 
 }
