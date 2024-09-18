@@ -1,6 +1,12 @@
-$primary-color: red;  
+@import './_variables.scss';
 
 .button {  
-  background-color: $primary-color;  
-  @apply text-white font-bold py-2 px-4 rounded;  
+  background-color: $button-cl-black;  
+  @apply text-white px-4 rounded-r-lg;
+  // text-white font-bold py-2 px-4 rounded;  
+  &:hover {  
+    background-color: $button-cl-white; 
+    color: $button-cl-black;
+    @apply border border-gray-500;
+  } 
 }

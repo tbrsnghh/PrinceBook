@@ -1,12 +1,24 @@
-import Banner from "./components/banner/Banner";
+import Banner from "./components/banner/BannerTest";
 import Header from "./components/header/Header";
+import Account from "./pages/account/Account";
+import BookDetailPage from "./pages/bookDetail/BookDetailPage";
+import Cart from "./pages/cart/Cart";
+import Home from "./pages/home/Home";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <Header/>
-      <Banner/>
-    </>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route index element={<Home/>}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
+          <Route path="/account" element={<Account/>}></Route>
+
+          <Route path="/book/:id" element={<BookDetailPage/>}></Route>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
