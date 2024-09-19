@@ -5,10 +5,16 @@ import Header from '../../components/header/Header'
 
 export default function BookDetailPage() {
   return (
-    <>
-        <Header/>
-        <BookDetailComp/>
-        <Footer/>
-    </>
+    <div className='relative'>
+        <div className=''>
+          <Header/>
+        </div>
+        <div className='mt-16'>
+          <BookDetailComp/>
+          <Footer/>
+        </div>
+    </div>
   )
 }
+
+

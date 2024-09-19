@@ -39,15 +39,16 @@ function BookDetailComp() {
 
   return (
     <div className="bg-white p-4 text-black">
-      <div className="flex justify-center">
+      <div className="justify-center">
         <div className="w-full max-w-7xl mx-auto">
           {book ? (
             <div className="container flex">
               {/* 1/3 bên trái */}
-              <div className="w-1/3 border book_cover">
+              <div className="w-1/3 h-96 border book_cover">
                 <img
                   src={cover_main}
-                  className="w-80 h-96 mx-auto object-cover"
+                  className="w-48 h-auto z-10 mx-auto"  
+                  // className="w-80 h-96 mx-auto object-cover"
                 />
                 <div className="mt-4 space-x-2 h-32">
                   {/* map image click vô hiển thị */}
@@ -58,7 +59,7 @@ function BookDetailComp() {
                 </div>
               </div>
               {/* 2/3 bên phải */}
-              <div className="w-6/12 pl-4">
+              <div className="w-6/12 pl-4 ">
                 <h1 className="text-xl font-bold">{book.name}</h1>
                 <p className="text-gray-600">
                   Tác giả: <span className="text-blue-500">CHƯA CÓ</span>
@@ -157,3 +158,4 @@ function BookDetailComp() {
 }
 
 export default BookDetailComp;
+
