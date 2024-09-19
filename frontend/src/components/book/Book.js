@@ -3,10 +3,10 @@ import "./book.scss";
 export default function Book({ book }) {
   return (
     <>
-      <div className="flex justify-center items-center bg-gray-100">
-        <div className="border rounded-lg  p-6 max-w-xs bg-white">
+      <div className="flex justify-center items-center">
+        <div className="border rounded-lg  p-6 max-w-xs">
           <img
-            src="https://salt.tikicdn.com/cache/750x750/ts/product/bd/d4/ca/cdf5b6ab6f0bee199341fc51d071358d.jpg.webp"
+            src="https://www.nxbtre.com.vn/Images/Book/NXBTreStoryFull_02482010_104821.jpg"
             alt=""
             className="w-full rounded-lg mb-4"
           />

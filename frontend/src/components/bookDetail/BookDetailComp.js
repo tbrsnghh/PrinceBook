@@ -1,14 +1,32 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail } from "../../store/booksSlice";
-import './bookDetail.scss'
+import "./bookDetail.scss";
+import ImageSlider from "./ImageSlider";
 
 function BookDetailComp() {
   const { id } = useParams();
-  const { a_book } = useSelector((state) => state.books);
-  const book = a_book;
+  const cover_list = [
+    {
+      url: "https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg",
+    },
+    {
+      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_12-390x510.jpg",
+    },
+    {
+      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_2-390x510.jpg",
+    },
+    {
+      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_3-390x510.jpg",
+    },
+    {
+      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_4-390x510.jpg",
+    },
+  ];
+  const [cover_main, setCoverMain] = useState(cover_list[0].url);
+  const book = useSelector((state) => state.books.a_book);
 
   const dispatch = useDispatch();
 
@@ -20,31 +38,19 @@ function BookDetailComp() {
     <div className="max-w-7xl mx-auto p-6">
       {book ? (
         <div className="container flex">
+          {/* container detail book */}
           <div className="book_cover w-1/3">
-            <img
-              src={book && book.img}
-              alt="Book cover"
-              className="w-full rounded-lg"
-            />
-            <div className="flex mt-4 space-x-2">
+            <img src={cover_main} className="w-80 h-96 mx-auto object-cover"/>
+            <div className="mt-4 space-x-2 h-32">
               {/* map image click vô hiển thị */}
-              <img
-                src="https://placehold.co/50x70"
-                alt="Thumbnail 1"
-                className="w-1/5 rounded-lg"
+              <ImageSlider
+                cover_list={cover_list}
+                setCoverMain={setCoverMain}
               />
-              <div className="w-1/5 flex items-center justify-center bg-gray-200 rounded-lg text-gray-600">
-                +9
-              </div>
             </div>
-            <button className="button-add-to-cart">
-              Thêm vào giỏ hàng
-            </button>
-            <button className="button-add-to-cart">
-              Mua ngay
-            </button>
+            <button className="button-add-to-cart">Thêm vào giỏ hàng</button>
+            <button className="button-add-to-cart">Mua ngay</button>
           </div>
-
           <div className="w-2/3 pl-4">
             <h1 className="text-2xl font-bold">Cây Cam Ngọt Của Tôi</h1>
             <p className="text-gray-600">

@@ -1,11 +1,41 @@
-@import '../../variables';
+@import "../../variables";
 
 .button-add-to-cart {
-    background-color: $button-cl-black;
-    @apply text-white w-full mt-4 py-2 px-4 rounded-lg;
-    &:hover {
-        background-color: $button-cl-white;
-        color: $button-cl-black;
-        @apply border border-gray-500;
-    }
+  background-color: $button-cl-black;
+  @apply text-white w-full mt-4 py-2 px-4 rounded-lg;
+  &:hover {
+    background-color: $button-cl-white;
+    color: $button-cl-black;
+    @apply border border-gray-500;
+  }
 }
+
+.slider-container {
+  @apply w-4/5 mx-auto text-black;
+}
+
+.slider-image-wrapper {
+  @apply flex justify-center items-center h-24 overflow-hidden;
+}
+
+.slider-image {
+  @apply w-auto h-full object-cover;
+}
+/* styles.css or tailwind.css */
+.slick-prev, .slick-next {
+  @apply absolute flex items-center justify-center bg-black rounded-full  cursor-pointer z-10 !important;
+  font-size: 1.5rem; /* Adjust font size for arrows */
+}
+.slick-prev {
+  left: -2.5rem; /* Position left */
+}
+.slick-next {
+  right: -2.5rem;
+}
+  
+
+.slick-prev:hover, .slick-next:hover {
+  @apply bg-white text-gray-600; /* Darker background on hover */
+}
+
+
