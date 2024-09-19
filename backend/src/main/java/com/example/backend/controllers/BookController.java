@@ -4,6 +4,7 @@ import ch.qos.logback.core.util.StringUtil;
 import com.example.backend.dtos.BookDTO;
 import com.example.backend.dtos.BookImageDTO;
 import com.example.backend.models.Book;
+import com.example.backend.models.BookImage;
 import com.example.backend.responses.ApiResponse;
 import com.example.backend.services.BookService;
 import jakarta.validation.Valid;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -121,16 +123,33 @@ public class BookController {
         return ResponseEntity.ok().body(apiResponse);
     }
 
-    @PostMapping("/uploads/{id}")
-    public ResponseEntity<ApiResponse> uploadImage(@PathVariable Long id, @ModelAttribute MultipartFile files) throws IOException {
-        String fileName = storeFile(files);
-        BookImageDTO bookImageDTO = BookImageDTO.builder()
-                .imagePath(fileName)
-                .build();
+    @PostMapping(value = "/uploads/{id}")
+    public ResponseEntity<ApiResponse> uploadImage(@PathVariable Long id,
+                                                   @ModelAttribute("files") List<MultipartFile> files) throws IOException {
+        List<BookImage> bookImageList = new ArrayList<>();
+        int count = 0;
+        for(MultipartFile file : files) {
+            if (file != null) {
+                if(file.getSize() == 0){
+                    count++;
+                    continue;
+                }
+                String fileName = storeFile(file);
+                BookImageDTO bookImageDTO = BookImageDTO.builder()
+                        .imagePath(fileName)
+                        .build();
+                BookImage bookImage = bookService.saveBookImage(id, bookImageDTO);
+                bookImageList.add(bookImage);
+            }
+        }
+        if (count == 1) {
+            throw new IllegalArgumentException("Files chưa chọn!");
+        }
+
         ApiResponse apiResponse = ApiResponse.builder()
+                .data(bookImageList)
                 .status(HttpStatus.OK.value())
                 .message("Upload successfully")
-                .data(bookService.saveBookImage(id, bookImageDTO))
                 .build();
         return ResponseEntity.ok().body(apiResponse);
     }
