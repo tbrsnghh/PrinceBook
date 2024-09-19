@@ -55,7 +55,6 @@ public class CategoryController {
                 .message("Insert Successfully")
                 .status(HttpStatus.CREATED.value())
                 .build();
-        //return ResponseEntity.ok().body(apiResponse);
         return ResponseEntity.ok(apiResponse);
     }
 

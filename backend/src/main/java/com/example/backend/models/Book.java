@@ -47,6 +47,12 @@ public class Book extends BaseEntity {
     // Ngôn ngữ
     private String language;
 
+    // Giá
+    private Long price;
+
+    // Mô tả
+    private String description;
+
     // Khóa ngoại từ bảng Category
 //    @ManyToOne
 //    @JoinColumn(name = "category_id", nullable = false)

@@ -1,8 +1,10 @@
 package com.example.backend.services;
 
 import com.example.backend.dtos.BookDTO;
+import com.example.backend.dtos.BookImageDTO;
 import com.example.backend.dtos.CategoryDTO;
 import com.example.backend.models.Book;
+import com.example.backend.models.BookImage;
 import com.example.backend.models.Category;
 
 import java.util.List;
@@ -12,5 +14,7 @@ public interface IBookService {
     Book getBookById(Long id);
     Book saveBook(BookDTO bookDTO);
     Book updateBook(Long id, BookDTO bookDTO);
-    void deleteCategory(Long id);
+    void deleteBook(Long id);
+    BookImage saveBookImage(Long bookId, BookImageDTO bookImageDTO);
+    List<BookImage> getAllBookImages(Long bookId);
 }

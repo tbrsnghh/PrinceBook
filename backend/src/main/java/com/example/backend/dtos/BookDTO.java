@@ -39,7 +39,13 @@ public class BookDTO {
     // Ngôn ngữ
     private String language;
 
+    // Giá
+    private Long price;
+
+    // Mô tả
+    private String description;
+
     @JsonProperty("category_id")
-    @Min(value = 1, message = "Id của student phải lớn hơn 0")
+    @Min(value = 1, message = "Id của category phải lớn hơn 0")
     private Long category_id;
 }
