@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookDetail } from "../../store/booksSlice";
 import "./bookDetail.scss";
 import ImageSlider from "./ImageSlider";
+import Offers from "./Offers";
+import ShippingInfo from "./ShippingInfo";
+import Buying from "./Buying";
 
 function BookDetailComp() {
   const { id } = useParams();
@@ -35,129 +38,120 @@ function BookDetailComp() {
   }, [id, dispatch]);
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      {book ? (
-        <div className="container flex">
-          {/* container detail book */}
-          <div className="book_cover w-1/3">
-            <img src={cover_main} className="w-80 h-96 mx-auto object-cover"/>
-            <div className="mt-4 space-x-2 h-32">
-              {/* map image click vô hiển thị */}
-              <ImageSlider
-                cover_list={cover_list}
-                setCoverMain={setCoverMain}
-              />
-            </div>
-            <button className="button-add-to-cart">Thêm vào giỏ hàng</button>
-            <button className="button-add-to-cart">Mua ngay</button>
-          </div>
-          <div className="w-2/3 pl-4">
-            <h1 className="text-2xl font-bold">Cây Cam Ngọt Của Tôi</h1>
-            <p className="text-gray-600">
-              Nhà cung cấp: <span className="text-blue-500">Nhã Nam</span>
-            </p>
-            <p className="text-gray-600">
-              Nhà xuất bản:{" "}
-              <span className="text-blue-500">NXB Hội Nhà Văn</span>
-            </p>
-            <div className="flex items-center mt-2">
-              <div className="flex items-center text-yellow-500">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star-half-alt"></i>
-              </div>
-              <span className="ml-2 text-gray-600">(10 đánh giá)</span>
-              <span className="ml-4 text-gray-600">| Đã bán 3.3k</span>
-            </div>
-            <div className="mt-4 bg-red-100 p-2 rounded-lg flex items-center">
-              <span className="bg-red-500 text-white px-2 py-1 rounded-lg">
-                FLASH SALE
-              </span>
-              <span className="ml-2 text-red-500 font-bold text-lg">
-                00 : 02 : 40
-              </span>
-            </div>
-            <div className="mt-4">
-              <span className="text-red-500 text-2xl font-bold">84.240 đ</span>
-              <span className="line-through text-gray-500 ml-2">108.000</span>
-              <span className="text-red-500 ml-2">-22%</span>
-            </div>
-            <div className="mt-4 bg-gray-100 p-4 rounded-lg">
-              <h2 className="font-bold">Thông tin vận chuyển</h2>
-              <p className="text-gray-600">
-                Giao hàng đến
-                <span className="text-blue-500">
-                  Phường Bến Nghé, Quận 1, Hồ Chí M
-                </span>
-                <span className="text-blue-500">Thay đổi</span>
-              </p>
-              <p className="text-gray-600 flex items-center">
-                <i className="fas fa-truck text-green-500 mr-2"></i> Giao hàng
-                tiêu chuẩn
-              </p>
-              <p className="text-gray-600">
-                Dự kiến giao <span className="font-bold">Thứ năm - 19/09</span>
-              </p>
-            </div>
-            <div className="mt-4 bg-gray-100 p-4 rounded-lg">
-              <h2 className="font-bold">
-                Ưu đãi liên quan <span className="text-blue-500">Xem thêm</span>
-              </h2>
-              <div className="flex space-x-2 mt-2">
-                <div className="bg-yellow-100 p-2 rounded-lg text-yellow-600">
-                  Mã giảm 10k - d...
-                </div>
-                <div className="bg-yellow-100 p-2 rounded-lg text-yellow-600">
-                  Mã giảm 25k - d...
-                </div>
-                <div className="bg-blue-100 p-2 rounded-lg text-blue-600">
-                  ShopeePay: giảm...
-                </div>
-                <div className="bg-blue-100 p-2 rounded-lg text-blue-600">
-                  Vnpay: giảm 5k c...
-                </div>
-              </div>
-            </div>
-            <div className="mt-4 flex items-center">
-              <span className="font-bold">Số lượng:</span>
-              <div className="flex items-center ml-2">
-                <button className="px-2 py-1 bg-gray-200 rounded-l-lg">
-                  -
-                </button>
-                <input
-                  type="text"
-                  value="1"
-                  className="w-12 text-center border-t border-b border-gray-200"
+    <div className="bg-white p-4 text-black">
+      <div className="flex justify-center">
+        <div className="w-full max-w-7xl mx-auto">
+          {book ? (
+            <div className="container flex">
+              {/* 1/3 bên trái */}
+              <div className="w-1/3 border book_cover">
+                <img
+                  src={cover_main}
+                  className="w-80 h-96 mx-auto object-cover"
                 />
-                <button className="px-2 py-1 bg-gray-200 rounded-r-lg">
-                  +
-                </button>
+                <div className="mt-4 space-x-2 h-32">
+                  {/* map image click vô hiển thị */}
+                  <ImageSlider
+                    cover_list={cover_list}
+                    setCoverMain={setCoverMain}
+                  />
+                </div>
               </div>
+              {/* 2/3 bên phải */}
+              <div className="w-6/12 pl-4">
+                <h1 className="text-xl font-bold">{book.name}</h1>
+                <p className="text-gray-600">
+                  Tác giả: <span className="text-blue-500">CHƯA CÓ</span>
+                </p>
+
+                <div className="flex items-center mt-2">
+                  <div className="flex items-center text-yellow-500">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star-half-alt"></i>
+                  </div>
+                  <span className="ml-2 text-gray-600">(10 đánh giá)</span>
+                  <span className="ml-4 text-gray-600">| Đã bán 3.3k</span>
+                </div>
+                <div className="mt-4 bg-red-100 p-2 rounded-lg flex items-center">
+                  <span className="bg-red-500 text-white px-2 py-1 rounded-lg">
+                    FLASH SALE
+                  </span>
+                  <span className="ml-2 text-red-500 font-bold text-lg">
+                    00 : 02 : 40
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <span className="text-red-500 text-2xl font-bold">
+                    CHƯA CÓ.240 đ
+                  </span>
+                  <span className="line-through text-gray-500 ml-2">
+                    CHƯA CÓ.000
+                  </span>
+                  <span className="text-red-500 ml-2">-22%</span>
+                </div>
+                <ShippingInfo />
+
+                {/* Thông tin chi tiết cuốn sách */}
+                <div className="mt-4 bg-gray-100 p-4 rounded-lg">
+                  <h2 className="font-bold">Thông tin chi tiết</h2>
+                  <p className="text-gray-600">Mã hàng: 8935235228351</p>
+                  <p className="text-gray-600">
+                    Tên Nhà Cung Cấp:{" "}
+                    <span className="text-blue-500">Nhã Nam</span>
+                  </p>
+                </div>
+                <div className="mt-4 bg-gray-100 p-4 rounded-lg">
+                  <h2 className="font-bold">Mô tả sách</h2>
+                  <p>
+                    "Tiếp nối cuốn tiểu thuyết nổi tiếng HAI SỐ PHẦN về William
+                    Kane và Abel Rosnovski, Đứa con gái hoàng đàng là một câu
+                    chuyện được chắp bút của thế hệ tiếp theo. Câu chuyện đầy
+                    trớ trêu, trắc trở nhưng đầy nhân văn.
+                  </p>
+                  <h3 className="font-semibold mt-2">
+                    TƯƠNG LAI CỦA CÔ LÀ THAM VỌNG
+                  </h3>
+                  <p>
+                    Florentyna Rosnovski – con gái Abel – với một ý chí sắt đá
+                    di truyền từ người cha, cô quyết tâm theo đuổi mục tiêu lý
+                    tưởng của mình, đó là trở thành nữ Tổng thống Mỹ đầu tiên.
+                    Tuy thế, cuộc đời của cô, cũng giống như người cha của mình,
+                    cũng gập ghềnh với nhiều trắc trở mà người phụ nữ tham vọng
+                    này định phải vượt qua.
+                  </p>
+                  <p>
+                    Với hình tượng được lấy cảm hứng từ những nhân cách lớn như
+                    “bà đầm thép” Margaret Thatcher, Golda Meer, hay Indira
+                    Gandhi, Jeffrey Archer đã trả lời cho độc giả những câu hỏi
+                    về cuộc đời của số phận, về ý nghĩa của cuộc sống này. Vượt
+                    qua những khó khăn, vươn đến những vì sao chính là thông
+                    điệp mà cây bút tài ba muốn truyền tải.
+                  </p>
+                  <h3 className="font-semibold mt-2">Ý NGHĨA NHAN ĐỀ</h3>
+                  <p>
+                    Tiểu thuyết Đứa con gái hoàng đàng được dịch từ tác phẩm The
+                    Prodigal Daughter. Cái tên này được Jeffrey Archer đặt cho
+                    một Đứa con trong Kinh Thánh – The Prodigal Son. Ở Việt Nam,
+                    tích này được biết đến với cái tên Người con hoang đàng, hay
+                    Đứa con hoàng đàng trôi về. Cách đặt tên này tạo ra một sự
+                    kết nối giữa hai phần 1 – Hai số phận. Tiểu thuyết Hai số
+                    phận kể về cuộc đời của Kane và Abel – vốn dĩ là một bi kịch
+                    giữa Cain và Abel – một nguồn cảm hứng trong Kinh Thánh.
+                  </p>
+                </div>
+              </div>
+
+              {/* Nguyên một cột cho vô giỏ hàng */}
+              <Buying />
             </div>
-            <div className="mt-4 bg-gray-100 p-4 rounded-lg">
-              <h2 className="font-bold">Thông tin chi tiết</h2>
-              <p className="text-gray-600">Mã hàng: 8935235228351</p>
-              <p className="text-gray-600">
-                Tên Nhà Cung Cấp: <span className="text-blue-500">Nhã Nam</span>
-              </p>
-            </div>
-          </div>
+          ) : (
+            <p className="text-center text-gray-500">Loading...</p>
+          )}
         </div>
-      ) : (
-        <p className="text-center text-gray-500">Loading...</p>
-      )}
-      {/* <div className="mt-6">
-        <h3 className="text-2xl font-bold">About the author</h3>
-        {/* {/* <div className="flex items-center mt-2">  
-          <img src={book.authorImage} alt={book.author} className="w-12 h-12 rounded-full mr-4" />  
-          <div>  
-            <p className="font-semibold">{book.author}</p>  
-            <p className="text-gray-600">{book.authorBooksCount} books · {book.authorFollowers} followers</p>  
-          </div>   
-        </div>   
-      </div> */}
+      </div>
     </div>
   );
 }

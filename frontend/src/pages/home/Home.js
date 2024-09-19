@@ -13,14 +13,17 @@ export default function Home() {
   useEffect(() => {
     dispatch(getBooks());
   }, []);
-  console.log(books)
+  console.log(books);
   return (
     <>
-      <Header />
-      <h1>Home</h1>
-      <Banner />
-      { books ? <BooksList booksList={books} /> : null }
-      <Footer />
+      <div className="bg-white text-black">
+        
+          <Header />
+          <h1>Home</h1>
+          <Banner />
+          {books ? <BooksList booksList={books} /> : null}
+          <Footer />
+        </div>
     </>
   );
 }
