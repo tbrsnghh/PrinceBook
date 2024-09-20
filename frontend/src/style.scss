@@ -1,5 +1,11 @@
 @import './_variables.scss';
 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .button {  
   background-color: $button-cl-black;  
   @apply text-white px-4 rounded-r-lg;

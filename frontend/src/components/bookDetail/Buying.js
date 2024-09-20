@@ -1,9 +1,19 @@
 import React from "react";
 import Offers from "./Offers";
-
-export default function Buying() {
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../store/cartSlice";
+export default function Buying({book}) {
+  const dispatch = useDispatch()
+  const addItem = () => {
+    const item = {
+      id: book.id,
+      name: book.name,
+      price: book.price
+    }
+    dispatch(addItemToCart(item))
+  }
   return (
-    <div className="w-4/12 pl-4">
+    <>
       {/* className="w-1/3 fixed right-0 top-20 h-full bg-white p-4 shadow-lg" */}
       <Offers />
       {/* cart quantity*/}
@@ -23,8 +33,8 @@ export default function Buying() {
         <span className="font-bold">Tạm tính: </span>  
         <span className="block text-lg font-semibold ml-2">151.000₫</span>  
       </div>   
-      <button className="button-add-to-cart">Thêm vào giỏ hàng</button>
-      <button className="button-add-to-cart">Mua ngay</button>
-    </div>
+      <button className="button-add-to-cart" onClick={addItem}>Thêm vào giỏ hàng</button>
+      <button className="button-add-to-cart" >Mua ngay</button>
+    </>
   );
 }
