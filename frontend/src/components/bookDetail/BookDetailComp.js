@@ -11,6 +11,14 @@ import Buying from "./Buying";
 
 function BookDetailComp() {
   const { id } = useParams();
+  const book = useSelector((state) => state.books.a_book);
+  console.log(book);
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBookDetail(id));
+  }, []);
   const cover_list = [
     {
       url: "https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg",
@@ -28,31 +36,18 @@ function BookDetailComp() {
       url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_4-390x510.jpg",
     },
   ];
-  const [cover_main, setCoverMain] = useState(cover_list[0].url);
-  const book = useSelector((state) => state.books.a_book);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getBookDetail(id));
-  }, [id, dispatch]);
-
+  
   return (
     <div className="w-full max-w-7xl py-2 mx-auto">
       {book ? (
         <div className="container flex flex-wrap">
           {/* 1/3 bên trái */}
           <div className="container w-full md:w-4/12 h-102 border">
-            <img
-              src={cover_main}
-              // className="w-48 h-auto z-10 mx-auto"
-              className="w-80 h-96 mx-auto object-cover"
-            />
+            
             <div className="mt-4 space-x-2 h-32">
               {/* map image click vô hiển thị */}
               <ImageSlider
-                cover_list={cover_list}
-                setCoverMain={setCoverMain}
+                cover_list={cover_list}   
               />
             </div>
           </div>
