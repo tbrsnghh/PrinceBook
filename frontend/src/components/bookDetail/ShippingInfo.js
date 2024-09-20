@@ -3,7 +3,8 @@ import React from "react";
 
 export default function ShippingInfo() {  
   return (  
-    <div className="mt-4 bg-gray-100 p-4 rounded-lg">  
+    <div className="mt-4 bg-gray-100 p-4 rounded-lg ">  
+    {/* className="bg-white w-full fixed top-0 z-50 shadow-md p-4" */}
       <h2 className="font-bold">Thông tin vận chuyển</h2>  
       <p className="text-gray-600">  
         Giao hàng đến <span className="text-blue-500">CHƯA CÓ</span>  

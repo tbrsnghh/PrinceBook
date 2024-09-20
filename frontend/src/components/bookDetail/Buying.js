@@ -4,6 +4,7 @@ import Offers from "./Offers";
 export default function Buying() {
   return (
     <div className="w-4/12 pl-4">
+      {/* className="w-1/3 fixed right-0 top-20 h-full bg-white p-4 shadow-lg" */}
       <Offers />
       {/* cart quantity*/}
       <div className="mt-4 flex items-center">
