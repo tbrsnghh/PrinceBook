@@ -3,12 +3,16 @@ package com.example.backend.controllers;
 import ch.qos.logback.core.util.StringUtil;
 import com.example.backend.dtos.BookDTO;
 import com.example.backend.dtos.BookImageDTO;
+import com.example.backend.exceptions.ResourceNotFoundException;
 import com.example.backend.models.Book;
 import com.example.backend.models.BookImage;
-import com.example.backend.responses.ApiResponse;
+import com.example.backend.responses.*;
 import com.example.backend.services.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -33,6 +37,28 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
+
+    @GetMapping("/list")
+    public ResponseEntity<ApiResponse> getAllBooksPaginated(@RequestParam(defaultValue = "0") int page,
+                                                                 @RequestParam(defaultValue = "5") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size,
+                Sort.by("createdAt").descending());
+        Page<BookResponse> bookResponsePage = bookService.getAllBookPaginated(pageRequest);
+        int totalPages = bookResponsePage.getTotalPages();
+        List<BookResponse> bookResponses = bookResponsePage.getContent();
+        BookListResponse bookListResponse = BookListResponse.builder()
+                .bookResponses(bookResponses)
+                .totalPages(totalPages)
+                .build();
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(bookListResponse)
+                .message("Show all books successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+
+        return ResponseEntity.ok().body(apiResponse);
+    }
 
     @GetMapping
     public ResponseEntity<ApiResponse> getAllBooks() {
@@ -139,9 +165,13 @@ public class BookController {
                         .imagePath(fileName)
                         .build();
                 BookImage bookImage = bookService.saveBookImage(id, bookImageDTO);
+                if (bookImage.getBook() == null){
+                    throw new ResourceNotFoundException("Khong tim thay san pham sach voi id " + id);
+                }
                 bookImageList.add(bookImage);
             }
         }
+        
         if (count == 1) {
             throw new IllegalArgumentException("Files chưa chọn!");
         }
