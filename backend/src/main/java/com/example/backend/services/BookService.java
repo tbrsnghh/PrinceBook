@@ -9,7 +9,10 @@ import com.example.backend.models.Category;
 import com.example.backend.repositories.BookImageRepository;
 import com.example.backend.repositories.BookRepository;
 import com.example.backend.repositories.CategoryRepository;
+import com.example.backend.responses.BookResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;
@@ -18,19 +21,26 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BookService implements IBookService {
-    private final BookRepository bookCategory;
+    private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
     private final BookImageRepository bookImageRepository;
 
 
     @Override
+    public Page<BookResponse> getAllBookPaginated(PageRequest pageRequest) {
+        return bookRepository.findAll(pageRequest).map(book -> {
+            return BookResponse.fromBook(book);
+        });
+    }
+
+    @Override
     public List<Book> getAllBooks() {
-        return bookCategory.findAll();
+        return bookRepository.findAll();
     }
 
     @Override
     public Book getBookById(Long id) {
-        return bookCategory.findById(id)
+        return bookRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Book not found with id " + id));
     }
 
@@ -53,7 +63,7 @@ public class BookService implements IBookService {
                 .description(bookDTO.getDescription())
                 .category(existingCategory)
                 .build();
-        return bookCategory.save(book);
+        return bookRepository.save(book);
     }
 
     @Override
@@ -74,7 +84,7 @@ public class BookService implements IBookService {
             bookUpdate.setLanguage(bookDTO.getLanguage());
             bookUpdate.setPrice(bookDTO.getPrice());
             bookUpdate.setDescription(bookDTO.getDescription());
-            return bookCategory.save(bookUpdate);
+            return bookRepository.save(bookUpdate);
         }
         return null;
     }
@@ -82,7 +92,7 @@ public class BookService implements IBookService {
     @Override
     public void deleteBook(Long id) {
         Book bookDelete = getBookById(id);
-        bookCategory.delete(bookDelete);
+        bookRepository.delete(bookDelete);
     }
 
     @Override

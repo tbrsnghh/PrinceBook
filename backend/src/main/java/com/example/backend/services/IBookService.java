@@ -6,10 +6,14 @@ import com.example.backend.dtos.CategoryDTO;
 import com.example.backend.models.Book;
 import com.example.backend.models.BookImage;
 import com.example.backend.models.Category;
+import com.example.backend.responses.BookResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
 public interface IBookService {
+    Page<BookResponse> getAllBookPaginated(PageRequest pageRequest);
     List<Book> getAllBooks();
     Book getBookById(Long id);
     Book saveBook(BookDTO bookDTO);

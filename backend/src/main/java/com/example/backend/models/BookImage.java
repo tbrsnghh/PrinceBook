@@ -19,8 +19,6 @@ public class BookImage extends BaseEntity{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     private String imagePath;
 
     @ManyToOne

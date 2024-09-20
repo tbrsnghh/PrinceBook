@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookImageDTO {
-    private String name;
-
     @JsonProperty("image_path")
     private String imagePath;
 

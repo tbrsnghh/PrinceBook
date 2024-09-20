@@ -3,7 +3,10 @@ package com.example.backend.services;
 import com.example.backend.dtos.CategoryDTO;
 import com.example.backend.models.Category;
 import com.example.backend.repositories.CategoryRepository;
+import com.example.backend.responses.CategoryResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryService implements ICategoryService {
     private final CategoryRepository categoryRepository;
+
+
+    @Override
+    public Page<CategoryResponse> getAllCategoriesPaginated(PageRequest pageRequest) {
+        return categoryRepository.findAll(pageRequest).map(category -> {
+            return CategoryResponse.fromCategory(category);
+        });
+    }
 
     @Override
     public List<Category> getAllCategories() {

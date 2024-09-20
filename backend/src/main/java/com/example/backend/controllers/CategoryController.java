@@ -4,9 +4,14 @@ import com.example.backend.dtos.CategoryDTO;
 import com.example.backend.exceptions.ResourceNotFoundException;
 import com.example.backend.models.Category;
 import com.example.backend.responses.ApiResponse;
+import com.example.backend.responses.CategoryListResponse;
+import com.example.backend.responses.CategoryResponse;
 import com.example.backend.services.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -20,6 +25,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
+
+    @GetMapping("/list")
+    public ResponseEntity<ApiResponse> getAllCategoriesPaginated(@RequestParam(defaultValue = "0") int page,
+                                                                          @RequestParam(defaultValue = "5") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size,
+                Sort.by("createdAt").descending());
+        Page<CategoryResponse> categoryResponsePage = categoryService.getAllCategoriesPaginated(pageRequest);
+        int totalPages = categoryResponsePage.getTotalPages();
+        List<CategoryResponse> categoryResponses = categoryResponsePage.getContent();
+        CategoryListResponse categoryListResponse = CategoryListResponse.builder()
+                .categoryResponses(categoryResponses)
+                .totalPages(totalPages)
+                .build();
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(categoryListResponse)
+                .message("Show all categories successfully")
+                .status(HttpStatus.OK.value())
+                .build();
+
+        return ResponseEntity.ok().body(apiResponse);
+    }
 
     @GetMapping("")
     public ResponseEntity<ApiResponse> getAllCategory(){
