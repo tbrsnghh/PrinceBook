@@ -1,11 +1,12 @@
 import React from 'react'
-import Header from '../../components/header/Header'
+import BookDetailComp from '../../components/bookDetail/BookDetailComp'
+import DefaultLayout from '../../layout/default/DefaultLayout';
+import Cart1 from './Cart1';
 
 export default function Cart() {
   return (
-    <>
-        <Header/>
-        <h1>Cart Page</h1>
-    </>
+    <DefaultLayout children={<Cart1/>}/>
   )
 }
+
+

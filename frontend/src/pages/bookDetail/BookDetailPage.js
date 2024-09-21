@@ -1,14 +1,11 @@
 import React from 'react'
 import BookDetailComp from '../../components/bookDetail/BookDetailComp'
-import Footer from '../../components/footer/Footer'
-import Header from '../../components/header/Header'
+import DefaultLayout from '../../layout/default/DefaultLayout';
 
 export default function BookDetailPage() {
   return (
-    <>
-        <Header/>
-        <BookDetailComp/>
-        <Footer/>
-    </>
+    <DefaultLayout children={<BookDetailComp />}/>
   )
 }
+
+

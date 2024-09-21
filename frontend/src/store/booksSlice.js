@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const BASE_URL = 'https://66a07b337053166bcabb89f5.mockapi.io/api/v1/';
-
+// const BASE_URL = 'https://66a07b337053166bcabb89f5.mockapi.io/api/v1/';
+const BASE_URL = 'http://ec2-54-169-253-108.ap-southeast-1.compute.amazonaws.com:8080';
 
 export const getBooks=createAsyncThunk('books/getBooks',async (thunkAPI)=>{
-  const url = BASE_URL + "Books";
+  const url = BASE_URL + "/api/book";
   try{
       const response=await axios.get(url);
       return response.data;
@@ -15,10 +15,9 @@ export const getBooks=createAsyncThunk('books/getBooks',async (thunkAPI)=>{
   }
 });
 
-
 // Get Books Detail
 export const getBookDetail=createAsyncThunk('books/getBookDetail',async (id,thunkAPI)=>{
-  const url = BASE_URL + "Books/" + id;
+  const url = BASE_URL + "/api/book/" + id;
   try{
       const response=await axios.get(url);
       return response.data;
@@ -47,9 +46,9 @@ const booksSlice = createSlice({
             state.status='loading';
         })
         .addCase(getBooks.fulfilled,(state,action)=>{
-            state.books=action.payload;
-            console.log(action.payload);
-            state.status='succeeded';
+            state.books=action.payload.data;
+            state.message=action.payload.message;
+            state.status=action.payload.status;
         })
         //get book detail
         .addCase(getBooks.rejected,(state,action)=>{
@@ -60,8 +59,8 @@ const booksSlice = createSlice({
             state.status='loading';
         })
         .addCase(getBookDetail.fulfilled,(state,action)=>{
+            //console.log(action.payload);
             state.a_book=action.payload;
-            console.log(action.payload);
             state.status='succeeded';
         })
     }
