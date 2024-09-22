@@ -4,6 +4,8 @@ import DefaultLayout from "../../layout/default/DefaultLayout"; // Import layout
 import Banner from "../../components/banner/BannerTest";
 import BooksList from "../../components/booksList/BooksList";
 import { getBooks } from "../../store/booksSlice";
+import Categories2 from "../../components/categories/Categories2";
+import "./home.scss";
 
 export default function Home() {
   const { books, status, error } = useSelector((state) => state.books);
@@ -16,11 +18,19 @@ export default function Home() {
 
   const renderHomeContent = () => {
     return (
-      <>
-        <Banner />
-        <h1 className="text-3xl font-bold mb-4">Home</h1>
-        {books ? <BooksList booksList={books} /> : <p>Loading books...</p>}{" "}
-      </>
+      <div className="w-full my-4 flex">
+        <div className="w-1/5">
+          <Categories2 />
+        </div>
+        <div className="w-4/5 h-screen overflow-y-auto hide-scrollbar">
+          {/* <Banner /> */}
+          {books ? (
+            <BooksList booksList={books} />
+          ) : (
+            <p>Loading books...</p>
+          )}{" "}
+        </div>
+      </div>
     );
   };
 

@@ -7,8 +7,9 @@ const DefaultLayout = ({ children }) => {
   return (
     <>
       {/* <Header /> */}
-      <Header2 className="mb-4"/>
-      <div className="container mt-16 mx-auto">
+      <Header/>
+      {/* <Header2 className="mb-4"/> */}
+      <div className="W-full max-w-screen-xl  mt-20 mx-auto">
         <main>{children}</main> {/* Render nội dung con */}
       </div>
       <Footer />

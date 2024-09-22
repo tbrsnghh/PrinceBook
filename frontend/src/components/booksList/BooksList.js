@@ -4,8 +4,8 @@ import Book from '../book/Book';
 export default function BooksList({ booksList }) {  
   return (  
     <>  
-      <div className="container w-full max-w-7xl mx-auto px-4 mb-10">    
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2">   
+      <div className="container w-full mx-auto px-2 mb-10">    
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">   
           {booksList.map((book) => (  
             <Book key={book.id} book={book} />  
           ))}  

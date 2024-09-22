@@ -1,6 +1,8 @@
 @import '../../variables';
 $buttonColor: #000000;
-
+a {
+    @apply hover:text-zinc-400 !important;
+}
 .pattern-icon{
     color: $buttonColor;
 }

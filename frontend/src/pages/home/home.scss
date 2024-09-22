@@ -1,0 +1,9 @@
+/* Thêm vào file CSS của bạn */  
+.hide-scrollbar::-webkit-scrollbar {  
+    display: none; /* Ẩn thanh cuộn cho Chrome, Safari và các trình duyệt Webkit khác */  
+  }  
+  
+  .hide-scrollbar {  
+    -ms-overflow-style: none;  /* Ẩn thanh cuộn cho Internet Explorer và Edge */  
+    scrollbar-width: none;  /* Ẩn thanh cuộn cho Firefox */  
+  }
