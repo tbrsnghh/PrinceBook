@@ -22,7 +22,7 @@ export default function Home() {
         <div className="w-1/5">
           <Categories2 />
         </div>
-        <div className="w-4/5 h-screen overflow-y-auto hide-scrollbar">
+        <div className="w-4/5 hide-scrollbar">
           {/* <Banner /> */}
           {books ? (
             <BooksList booksList={books} />

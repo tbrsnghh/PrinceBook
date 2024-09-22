@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../store/categoriesSlice";
+import { Link } from "react-router-dom";
 
 export default function Categories2() {
   const { categories } = useSelector((state) => state.categories);
@@ -14,12 +15,14 @@ export default function Categories2() {
       <p className="text-md font-bold mb-4">Danh mục</p>
       <div className="border-t border-gray-200">
         {categories.map((category, index) => (
-          <div
-            key={index}
-            className="flex justify-between items-center py-2 border-b border-gray-100"
-          >
-            <button className="text-sm">{category.name}</button>
-          </div>
+          <Link to={`/category/${category.id}`}>
+            <div
+              key={index}
+              className="flex justify-between items-center py-2 border-b border-gray-100"
+            >
+              <button className="text-sm">{category.name}</button>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

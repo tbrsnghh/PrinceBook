@@ -5,6 +5,7 @@ import BookDetailPage from "./pages/bookDetail/BookDetailPage";
 import Cart from "./pages/cart/Cart";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SpecificCategory from "./pages/specificCategory/SpecificCategory";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route index element={<Home />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/book/:id" element={<BookDetailPage />}></Route>
-
+          <Route path="/category/:id" element={<SpecificCategory />}></Route>
           {/* //admin */}
 
           <Route path="/account" element={<Account />}></Route>
