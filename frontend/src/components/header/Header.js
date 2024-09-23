@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useSelector } from "react-redux";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import Notifications from "../notifications/Notifications";
@@ -13,14 +14,9 @@ export default function Header() {
     "Your order has been shipped",  
   ]; // Sample notifications  
   // Sample categories  
-  const categories = [  
-    "Fiction",  
-    "Non-fiction",  
-    "Science Fiction",  
-    "Mystery",  
-    "Romance",  
-    "Fantasy",  
-  ];  
+  const { categories } = useSelector((state) => state.categories);
+  console.log(categories);
+  
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     console.log(searchTerm)
