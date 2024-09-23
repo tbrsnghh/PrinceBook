@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Offers from "./Offers";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/cartSlice";
 export default function Buying({book}) {
+  const [quantity, setQuantity] = useState(1)
   const dispatch = useDispatch()
   const addItem = () => {
     const item = {
       id: book.id,
       name: book.name,
-      price: book.price
+      price: book.price,
+      quantity: quantity
     }
     dispatch(addItemToCart(item))
   }
+  
   return (
     <>
       {/* className="w-1/3 fixed right-0 top-20 h-full bg-white p-4 shadow-lg" */}
@@ -20,13 +23,11 @@ export default function Buying({book}) {
       <div className="mt-4 flex items-center">
         <span className="font-bold">Số lượng:</span>
         <div className="flex items-center ml-2">
-          <button className="px-2 py-1 bg-gray-200 rounded-l-lg">-</button>
-          <input
-            type="text"
-            value="1"
-            className="w-12 text-center border-t border-b border-gray-200"
-          />
-          <button className="px-2 py-1 bg-gray-200 rounded-r-lg">+</button>
+          <button className="px-2 py-1 bg-gray-200 rounded-l-lg"
+            onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
+          <span className="w-12 text-center border-t border-b border-gray-200">{quantity}</span>
+          <button className="px-2 py-1 bg-gray-200 rounded-r-lg"
+            onClick={() => setQuantity(quantity + 1)}>+</button>
         </div>
       </div>
       <div className="mt-4 flex">  
