@@ -1,10 +1,7 @@
 package com.example.backend.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +11,8 @@ import java.util.Date;
 @Table(name="orders")
 @Getter
 @Setter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order extends BaseEntity{
@@ -21,8 +20,8 @@ public class Order extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="fullname",length = 100)
-    private String fullName;
+    @Column(name="username",length = 100)
+    private String userName;
 
     @Column(length = 100)
     private String email;
@@ -53,14 +52,14 @@ public class Order extends BaseEntity{
     @Column(name="shipping_date")
     private LocalDate shippingDate;
 
-    @Column(name="tracking_number")
-    private String trackingNumber;
-
     @Column(name="payment_method")
     private String paymentMethod;
 
     @Column(name="active")
-    private Boolean  active;
+    private Boolean active;
+
+//    @Column(name = "user_id")
+//    private Long userId;
 
 //    @ManyToOne
 //    @JoinColumn(name="user_id")
