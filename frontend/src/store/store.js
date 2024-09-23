@@ -10,7 +10,7 @@ const store=configureStore({
         books: booksSlice,
         user:UserSlice,
         cart: cartSlice,
-        categories: categoriesSlice
+        categories: categoriesSlice,
         category: CateSclice
     }
 })

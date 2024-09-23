@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 
 import AddUser from "./components/admin/components/user/AddUser";
->>>>>>> admin-1
 import Account from "./pages/account/Account";
 import AdminHome from "./pages/admin/AdminHome";
 import AddCate from "./pages/admin/Category/AddCate";
