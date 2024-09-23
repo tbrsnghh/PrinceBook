@@ -1,5 +1,5 @@
 import React from 'react'
-import "../dist/css/adminlte.min.css";
+
 import { CChart } from '@coreui/react-chartjs';
 
 export default function Chart() {

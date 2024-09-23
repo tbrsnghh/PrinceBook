@@ -1,5 +1,5 @@
 import React from 'react'
-import "../dist/css/adminlte.min.css";
+
 export default function Dasborad() {
   return (
     <>
