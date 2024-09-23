@@ -19,7 +19,6 @@ function App() {
           {/* //admin */}
 
           <Route path="/account" element={<Account />}></Route>
-
           <Route path="/admin" element={<AdminHome />}></Route>
           <Route path="/ADMIN_User" element={<UserHome />}></Route>
         </Routes>
