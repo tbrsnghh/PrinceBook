@@ -30,51 +30,11 @@ function App() {
 
           {/* bao ve route admin */}
 
-          <Route
-            path="admin/category/addDm"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <AddCate />{" "}
-              </ProtectedRoute>
-            }
-          ></Route>
-          <Route
-            path="admin/category"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <ListCate />{" "}
-              </ProtectedRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <AdminHome />{" "}
-              </ProtectedRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin/user"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <UserHome />{" "}
-              </ProtectedRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin/user/adduser"
-            element={
-              <ProtectedRoute>
-                {" "}
-                <AddUserHome />{" "}
-              </ProtectedRoute>
-            }
-          ></Route>
+          <Route path="admin/category/addDm" element={  <ProtectedRoute>{" "}<AddCate />{" "}</ProtectedRoute> } ></Route>
+          <Route path="admin/category"   element={ <ProtectedRoute>  {" "}  <ListCate />{" "}  </ProtectedRoute>  } ></Route>
+          <Route  path="/admin" element={  <ProtectedRoute>  {" "}  <AdminHome />{" "}  </ProtectedRoute>  }  ></Route>
+          <Route path="/admin/user"  element={   <ProtectedRoute>  {" "}   <UserHome />{" "}  </ProtectedRoute>  } ></Route>
+          <Route path="/admin/user/adduser" element={  <ProtectedRoute> {" "}  <AddUserHome />{" "}  </ProtectedRoute>  }  ></Route>
           {/* bao ve route admin */}
         </Routes>
       </Router>
