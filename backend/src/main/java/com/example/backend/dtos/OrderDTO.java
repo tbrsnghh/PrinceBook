@@ -18,8 +18,8 @@ import java.util.Date;
 @AllArgsConstructor
 
 public class OrderDTO {
-    @JsonProperty("fullname")
-    private String fullName;
+    @JsonProperty("username")
+    private String userName;
 
     private String email;
 
@@ -31,9 +31,7 @@ public class OrderDTO {
 
     private String note;
 
-    @Column(name="total_money")
-    @Min(value = 0, message = "Tong tien phai lon hon 0.")
-    private Long totalMoney;
+    private String status;
 
     @JsonProperty("shipping_method")
     private String shippingMethod;
@@ -47,8 +45,8 @@ public class OrderDTO {
     @JsonProperty("payment_method")
     private String paymentMethod;
 
-    @JsonProperty("user_id")
-    @Min(value=1,message = "user' ID must be >0")
-    private Long userId;
+//    @JsonProperty("user_id")
+//    @Min(value=1,message = "user' ID must be >0")
+//    private Long userId;
 
 }

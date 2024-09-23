@@ -21,4 +21,5 @@ public interface IBookService {
     void deleteBook(Long id);
     BookImage saveBookImage(Long bookId, BookImageDTO bookImageDTO);
     List<BookImage> getAllBookImages(Long bookId);
+
 }

@@ -10,10 +10,12 @@ import com.example.backend.responses.*;
 import com.example.backend.services.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -194,5 +196,42 @@ public class BookController {
         java.nio.file.Path destination = Paths.get(uploadDir.toString(), uniqueFileName);
         Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
         return uniqueFileName;
+    }
+
+    @GetMapping("/images/{imageName}")
+    public ResponseEntity<?> viewImage(@PathVariable String imageName) {
+        try {
+            java.nio.file.Path imagePath = Paths.get("upload/" + imageName);
+            UrlResource resource = new UrlResource(imagePath.toUri());
+
+            if (resource.exists()) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(resource);
+            } else {
+                // logger.info(imageName + " not found");
+                return ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(new UrlResource(Paths.get("uploads/notfound.jpeg").toUri()));
+            }
+        } catch (Exception e) {
+            // logger.error("Error occurred while retrieving image: " + e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/deleteImage/{id}")
+    public ResponseEntity<ApiResponse> deleteImage(@PathVariable Long id) {
+        BookImage bookImage = bookService.getStudentImageById(id);
+
+        if(studentImage == null) {
+            throw new ResourceNotFoundException("Student image not found id:" + id);
+        }
+        studentService.deleteStudentImageById(id);
+        ApiResponse apiResponse = ApiResponse.builder()
+                .status(HttpStatus.OK.value())
+                .message("Xóa thành công " + id)
+                .data(studentImage).build();
+        return ResponseEntity.ok(apiResponse);
     }
 }
