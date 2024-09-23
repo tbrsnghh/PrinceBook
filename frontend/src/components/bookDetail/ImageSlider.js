@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "./bookDetail.scss";
 
-export default function ImageSlider({ cover_list, setCoverMain }) {
+export default function ImageSlider({ cover_list }) {
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     arrows: true,
     beforeChange: (current, next) => setCoverMain(cover_list[next].url),
   };
-
+  const [cover_main, setCoverMain] = useState(cover_list[0].url);
   return (
-    <div className="slider-container">
+    <>
+      <img
+              src={cover_main}
+              // className="w-48 h-auto z-10 mx-auto"
+              className="w-80 h-96 mx-auto object-cover"
+            />
+            <div className="slider-container">
       <Slider {...settings}>
         {cover_list.map((item, index) => (
           <div key={index} className="slider-image-wrapper" onClick={() => setCoverMain(item.url)}>
@@ -27,5 +33,7 @@ export default function ImageSlider({ cover_list, setCoverMain }) {
         ))}
       </Slider>
     </div>
+    </>
+    
   );
 }

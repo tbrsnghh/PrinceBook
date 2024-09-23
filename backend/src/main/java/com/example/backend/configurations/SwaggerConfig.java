@@ -21,6 +21,4 @@ public class SwaggerConfig {
                 .pathsToMatch("/api/book/**")
                 .build();
     }
-
-    // http://localhost:8080/swagger-ui/index.html
 }
