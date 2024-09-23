@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteMUser, ListUser, restoreUser } from '../../../../store/UserSlice';
+import { Button } from 'reactstrap';
 
 export default function Users() {
   const [openMenu, setOpenMenu] = useState(null);
 
+  const dispatch = useDispatch();
   // Function to toggle the menu-open class
   const toggleMenu = (menuId) => {
     if (openMenu === menuId) {
@@ -11,107 +15,78 @@ export default function Users() {
       setOpenMenu(menuId); // Open the clicked menu
     }
   };
+  useEffect(() => {
+    dispatch(ListUser())
+  }, []);
+  const { listUser } = useSelector((state) => state.user);
+  console.log(listUser);
+  const listUserArray = Array.isArray(listUser) ? listUser : [];
+  console.log(listUserArray);
+
+
+
+  const handle_delete = (id) => {
+    dispatch(deleteMUser(id));
+  }
   return (
     <>
-      {/* map du lieu */}
+      {
+        listUserArray.map((user, index) => (
+          <><tr key={index}>
 
-      <tr >
-        <th scope="row">
-          1
-        </th>
-        <td>
-          Mark
-        </td>
-        <td>
-          Otto
-        </td>
-        <td>
-          @mdo
-        </td>
-        <td>
-          @mdo
-        </td>
-        <td>
-          <button className='btn btn-primary' onClick={() => toggleMenu(1)}>sua</button>
-          |
-          <button className='btn btn-danger'>xoa</button>
-        </td>
-      </tr>
+            <td>
+              {user.username}
+            </td>
+            <td>
+              {user.phone}
+            </td>
+            <td>
+              {user.address}
+            </td>
+            <td>
+              {user.gmail}
+            </td>
+            <td>
+              {user.role}
+            </td>
+            <td>
+              <button className='btn btn-primary' onClick={() => toggleMenu(index)}>sua</button>
+              |
+              <Button className='btn btn-danger' onClick={() => handle_delete(user.id)}>xoa</Button>
+            </td>
+          </tr>
+            <tr className={openMenu == index ? "border-t-0 border-double border-4 border-sky-500" : "hidden"}>
 
+              <td>
+                <input type="text" className='text-dark' value={user.username} />
+              </td>
+              <td>
+                <input type="text" className='text-dark' value={user.phone} />
+              </td>
+              <td>
+                <input type="text" className='text-dark' value={user.address} />
+              </td>
+              <td>
+                <input type="text" className='text-dark' value={user.gmail} />
+              </td>
+              <td>
+                <input type="text" className='text-dark' value={user.role} />
+              </td>
+              <td>
+                <button className='btn btn-primary' onClick={() => toggleMenu(index)}>sua</button>
 
-      <tr className={openMenu == 1 ? " bg-info bg-gradient" : "hidden"} >
-        <th scope="row">
-          1
-        </th>
-        <td>
-          <input type="text" className='text-dark' value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" className='text-dark' value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" className='text-dark' value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" className='text-dark' value={"Mark"} />
-        </td>
-        <td>
-          <button className='btn btn-primary' onClick={() => toggleMenu(1)}>sua</button>
-          |
-          <button className='btn btn-danger'>xoa</button>
-        </td>
-      </tr>
-
-
-
-
-      <tr >
-        <th scope="row">
-          2
-        </th>
-        <td>
-          Mark
-        </td>
-        <td>
-          Otto
-        </td>
-        <td>
-          @mdo
-        </td>
-        <td>
-          @mdo
-        </td>
-        <td>
-          <button className='btn btn-primary' onClick={() => toggleMenu(2)}>sua</button>
-          |
-          <button className='btn btn-danger'>xoa</button>
-        </td>
-      </tr>
+              </td>
+            </tr></>
+        ))
+      }
 
 
-      <tr className={openMenu == 2 ? "" : "hidden"} >
-        <th scope="row">
-          2
-        </th>
-        <td>
-          <input type="text" value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" value={"Mark"} />
-        </td>
-        <td>
-          <input type="text" value={"Mark"} />
-        </td>
-        <td>
-          <button className='btn btn-primary' onClick={() => toggleMenu(2)}>sua</button>
-          |
-          <button className='btn btn-danger'>xoa</button>
-        </td>
-      </tr>
-   
+
+
+
+
+
+
     </>
   )
 }

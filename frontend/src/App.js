@@ -1,7 +1,14 @@
 
+import AddUser from "./components/admin/components/user/AddUser";
 import Account from "./pages/account/Account";
 import AdminHome from "./pages/admin/AdminHome";
-import UserHome from "./pages/admin/UserHome";
+import AddCate from "./pages/admin/Category/AddCate";
+import ListCate from "./pages/admin/Category/ListCate";
+import NotFound from "./pages/admin/NotFound";
+import ProtectedRoute from "./pages/admin/ProtectedRoute";
+import AddUserHome from "./pages/admin/user/AddUserHome";
+import UserHome from "./pages/admin/user/UserHome";
+
 import BookDetailPage from "./pages/bookDetail/BookDetailPage";
 import Cart from "./pages/cart/Cart";
 import Home from "./pages/home/Home";
@@ -17,23 +24,26 @@ function App() {
        
 
           <Route path="/book/:id" element={<BookDetailPage/>}></Route>
-
+          <Route path="/account" element={<Account/>}></Route>
 {/* //admin */}
+<Route path="/notfound" element={<NotFound/>}></Route>
 
 
 
 
 
 
-
-    <Route path="/account" element={<Account/>}></Route>
-
+   {/* bao ve route admin */}
   
-
-
-          <Route path="/admin" element={<AdminHome/>}></Route>
-          <Route path="/ADMIN_User" element={<UserHome/>}></Route>
+    <Route path="admin/category/addDm" element={<ProtectedRoute> <AddCate/> </ProtectedRoute>}></Route>
+        <Route path="admin/category" element={<ProtectedRoute> <ListCate/> </ProtectedRoute>}></Route>
+          <Route path="/admin" element={  <ProtectedRoute> <AdminHome/> </ProtectedRoute> } ></Route>
+          <Route path="/admin/user" element={ <ProtectedRoute> <UserHome/> </ProtectedRoute>}></Route>
+          <Route path="/admin/user/adduser" element={ <ProtectedRoute> <AddUserHome/> </ProtectedRoute>}></Route>
+            {/* bao ve route admin */}
         </Routes>
+
+
       </Router>
     </div>
   );

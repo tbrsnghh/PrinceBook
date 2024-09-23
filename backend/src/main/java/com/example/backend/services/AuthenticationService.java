@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.backend.dtos.AuthencationDTO;
 
 import com.example.backend.dtos.IntrospectDto;
+import com.example.backend.exceptions.ResourceNotFoundException;
 import com.example.backend.models.User;
 import com.example.backend.repositories.UserRepository;
 import com.example.backend.responses.AuthenticationResponses;
@@ -61,18 +62,20 @@ public class AuthenticationService {
 
       public AuthenticationResponses authenticate(AuthencationDTO authencationDTO) {
 
-         User user = userReponsitories.findByUsername(authencationDTO.getUsername()).orElseThrow(()-> new RuntimeException("User not found"));
-
+         User user = userReponsitories.findByUsername(authencationDTO.getUsername());
+        if(user == null)
+            throw new ResourceNotFoundException("tai khoan khong ton tai");
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
     boolean authenticated = passwordEncoder.matches(authencationDTO.getPassword(), user.getPassword());
 
     if (!authenticated)
-      throw new RuntimeException("Wrong password");
+      throw new ResourceNotFoundException("sai mat khau");
     var token = generateToken(authencationDTO.getUsername());
     return AuthenticationResponses.builder().token(token)
       .role(user.getRole()).username(user.getUsername())
       .phone(user.getPhone())
       .gmail(user.getGmail())
+      .address(user.getAddress())
       .ngay_sinh(user.getNgay_sinh())
       
       .authenticate(true).build();
