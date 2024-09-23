@@ -3,6 +3,7 @@ import booksSlice from './booksSlice';
 import UserSlice from './UserSlice';
 import cartSlice from './cartSlice';
 import categoriesSlice from './categoriesSlice';
+import CateSclice from './CateSclice';
 
 const store=configureStore({
     reducer:{
@@ -10,6 +11,7 @@ const store=configureStore({
         user:UserSlice,
         cart: cartSlice,
         categories: categoriesSlice
+        category: CateSclice
     }
 })
 export default store

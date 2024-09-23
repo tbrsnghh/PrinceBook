@@ -38,7 +38,7 @@ public class User  extends BaseEntity {
     private  String password;
     private  String phone;
     private  LocalDate ngay_sinh;
-
+    private String address;
 
    private String role;
 

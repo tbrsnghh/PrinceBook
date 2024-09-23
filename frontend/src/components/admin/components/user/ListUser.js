@@ -21,20 +21,21 @@ export default function ListUser() {
                     >
                         <thead>
                             <tr>
+                               
                                 <th>
-                                    #
+                                   Username
                                 </th>
                                 <th>
-                                    Ten dang nhap
+                                 Phone
                                 </th>
                                 <th>
-                                    vai tro
+                                  Address
                                 </th>
                                 <th>
-                                    dia chi
+                                 Gmail
                                 </th>
                                 <th>
-                                    so dien thoai
+                                Role
                                 </th>
                                 <th>
                                     action
@@ -49,7 +50,7 @@ export default function ListUser() {
                         </tbody>
                     </Table>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">them nguoi dung </button>
+                        <button type="submit" class="btn btn-primary">add new user</button>
                     </div>
                 </div>
             </div>

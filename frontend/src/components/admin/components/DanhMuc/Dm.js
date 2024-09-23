@@ -13,7 +13,7 @@ export default function Dm() {
   };
   return (
     <>
-      {/* map du lieu */}
+   
 
       <tr >
         <th scope="row">

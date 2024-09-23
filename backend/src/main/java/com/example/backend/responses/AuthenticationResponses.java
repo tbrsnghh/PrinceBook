@@ -19,5 +19,5 @@ public class AuthenticationResponses {
     String phone;
     String gmail;
     LocalDate ngay_sinh;
-
+    String address;
 }
