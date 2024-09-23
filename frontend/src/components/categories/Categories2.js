@@ -9,7 +9,7 @@ export default function Categories2() {
   useEffect(() => {
     dispatch(getCategories());
   }, []);
-  console.log(categories);
+
   return (
     <div className="bg-white rounded-lg shadow-md p-4 w-64">
       <p className="text-md font-bold mb-4">Danh mục</p>

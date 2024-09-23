@@ -6,7 +6,7 @@ export default function Book({ book }) {
   return (
     <Link to={`/book/${book.id}`}>
       <div
-        className="flex flex-col justify-between border rounded-lg shadow-md overflow-hidden w-full max-w-xs 
+        className="flex flex-col justify-between  rounded-lg shadow-md overflow-hidden w-full max-w-xs 
     transition-transform transform hover:scale-105"
       >
         <img
