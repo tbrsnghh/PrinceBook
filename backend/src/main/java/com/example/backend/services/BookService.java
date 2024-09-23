@@ -113,4 +113,6 @@ public class BookService implements IBookService {
     public List<BookImage> getAllBookImages(Long bookId) {
         return bookImageRepository.findByBookId(bookId);
     }
+
+
 }
