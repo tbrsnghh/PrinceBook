@@ -14,7 +14,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookImage extends BaseEntity{
+public class BookImage{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
