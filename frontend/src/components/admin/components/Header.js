@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-
-import "../dist/css/adminlte.min.css";
 import logo from "../../../asset/img/logo.png";
 import { Link } from 'react-router-dom';
 
