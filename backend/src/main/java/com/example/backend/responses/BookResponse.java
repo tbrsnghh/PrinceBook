@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 public class BookResponse extends BaseResponse{
     private Long id;
     private String name;
-    private String imagePath;
     private String author;
     private String publisher;
     private String publishedDate;
@@ -30,7 +29,6 @@ public class BookResponse extends BaseResponse{
         BookResponse bookResponse = BookResponse.builder()
                 .id(book.getId())
                 .name(book.getName())
-                .imagePath(book.getImagePath())
                 .author(book.getAuthor())
                 .publisher(book.getPublisher())
                 .publishedDate(book.getPublishedDate())

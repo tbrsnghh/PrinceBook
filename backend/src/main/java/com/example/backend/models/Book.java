@@ -26,8 +26,6 @@ public class Book extends BaseEntity {
     @Size(max = 255)
     private String name;
 
-    private String imagePath;
-
     // Tác giả
     @NotNull
     @Size(max = 100)
@@ -42,15 +40,19 @@ public class Book extends BaseEntity {
     private String publishedDate;
 
     // Số trang
+    @NotNull
     private int pages;
 
     // Ngôn ngữ
     private String language;
 
     // Giá
+    @NotNull
+    @Column(nullable = false)
     private Long price;
 
     // Mô tả
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     // Khóa ngoại từ bảng Category
@@ -58,7 +60,7 @@ public class Book extends BaseEntity {
 //    @JoinColumn(name = "category_id", nullable = false)
 //    private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 }

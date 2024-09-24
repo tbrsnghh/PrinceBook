@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,8 +18,6 @@ public class BookDTO {
     @NotNull
     @Size(max = 255)
     private String name;
-
-    private String imagePath;
 
     // Tác giả
     @NotNull
@@ -34,18 +33,22 @@ public class BookDTO {
     private String publishedDate;
 
     // Số trang
+    @Positive(message = "Số trang phải lớn hơn 0")
     private int pages;
 
     // Ngôn ngữ
     private String language;
 
     // Giá
+    @NotNull
+    @Positive(message = "Giá phải lớn hơn 0")
     private Long price;
 
     // Mô tả
     private String description;
 
     @JsonProperty("category_id")
+    @NotNull
     @Min(value = 1, message = "Id của category phải lớn hơn 0")
-    private Long category_id;
+    private Long categoryId; // Đổi tên biến cho phù hợp với quy ước
 }

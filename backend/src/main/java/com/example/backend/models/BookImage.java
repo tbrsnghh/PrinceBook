@@ -1,6 +1,7 @@
 package com.example.backend.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,10 +20,11 @@ public class BookImage{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String imagePath;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     @ToString.Exclude
     private Book book;
 }
