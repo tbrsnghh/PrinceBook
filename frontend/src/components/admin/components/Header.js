@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <>
 
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light w-10/12 fixed-top">
 
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -204,7 +204,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link to={"/admin/user/list"} class="nav-link">
+                    <Link to={"/admin/user"} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>List User</p>
                     </Link>
@@ -246,33 +246,22 @@ export default function Header() {
                   </li>
                 </ul>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li className={`nav-item has-treeview ${openMenu === 4 ? 'menu-open' : ''}`}>
+                <a href="#" class="nav-link"  onClick={() => toggleMenu(4)}>
                   <i class="nav-icon fas fa-table"></i>
                   <p>
-                    Tables
+                    Order
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/tables/simple.html" class="nav-link">
+                    <Link to={'/admin/order'} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Simple Tables</p>
-                    </a>
+                      <p>List order </p>
+                    </Link>
                   </li>
-                  <li class="nav-item">
-                    <a href="pages/tables/data.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>DataTables</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="pages/tables/jsgrid.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>jsGrid</p>
-                    </a>
-                  </li>
+                 
                 </ul>
               </li>
 

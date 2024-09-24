@@ -50,9 +50,9 @@ export default function Users() {
               {user.role}
             </td>
             <td>
-              <button className='btn btn-primary' onClick={() => toggleMenu(index)}>sua</button>
+              <button className='btn btn-primary' onClick={() => toggleMenu(index)}>edit</button>
               |
-              <Button className='btn btn-danger' onClick={() => handle_delete(user.id)}>xoa</Button>
+              <Button className='btn btn-danger' onClick={() => handle_delete(user.id)}>delete</Button>
             </td>
           </tr>
             <tr className={openMenu == index ? "border-t-0 border-double border-4 border-sky-500" : "hidden"}>

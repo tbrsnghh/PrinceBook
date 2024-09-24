@@ -13,6 +13,8 @@ import Cart from "./pages/cart/Cart";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SpecificCategory from "./pages/specificCategory/SpecificCategory";
+import UserRestoreHome from "./pages/admin/user/UserRestoreHome";
+import HomeOrder from "./pages/admin/order/HomeOrder";
 
 function App() {
   return (
@@ -35,6 +37,9 @@ function App() {
           <Route  path="/admin" element={  <ProtectedRoute>  {" "}  <AdminHome />{" "}  </ProtectedRoute>  }  ></Route>
           <Route path="/admin/user"  element={   <ProtectedRoute>  {" "}   <UserHome />{" "}  </ProtectedRoute>  } ></Route>
           <Route path="/admin/user/adduser" element={  <ProtectedRoute> {" "}  <AddUserHome />{" "}  </ProtectedRoute>  }  ></Route>
+          <Route path="/admin/user/restore" element={  <ProtectedRoute> {" "}  <UserRestoreHome />{" "}  </ProtectedRoute>  }  ></Route>
+          <Route path="/admin/order"  element={  <ProtectedRoute>  {" "}  <HomeOrder />{" "}  </ProtectedRoute>  } ></Route>
+
           {/* bao ve route admin */}
         </Routes>
       </Router>

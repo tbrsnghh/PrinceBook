@@ -52,13 +52,15 @@ public class UserService implements IUserService {
         if (user != null) {
             throw new ResourceNotFoundException("tai khoan da ton tai");
         }
+       
         User usera = User.builder()
                 .username(userDto.getUsername())
                 .gmail(userDto.getGmail())
                 .password(passwordEncoder.encode(  userDto.getPassword()))
                 .phone(userDto.getPhone())
                 .ngay_sinh(userDto.getNgay_sinh())
-                .role("USER")
+                
+                .role( !userDto.getRole().isEmpty() ? userDto.getRole() : "USER")
                 .build();
         return userRepository.save(usera);
     }
