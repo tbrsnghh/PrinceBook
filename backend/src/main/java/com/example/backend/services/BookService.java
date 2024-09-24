@@ -48,12 +48,11 @@ public class BookService implements IBookService {
     public Book saveBook(BookDTO bookDTO) {
         // Kiểm tra xem category_id đã tồn tại hay chưa
         Category existingCategory = categoryRepository.
-                findById(bookDTO.getCategory_id())
-                .orElseThrow(()-> new ResourceNotFoundException("Category not found with id " + bookDTO.getCategory_id()));
+                findById(bookDTO.getCategoryId())
+                .orElseThrow(()-> new ResourceNotFoundException("Category not found with id " + bookDTO.getCategoryId()));
 
         Book book = Book.builder()
                 .name(bookDTO.getName())
-                .imagePath(bookDTO.getImagePath())
                 .author(bookDTO.getAuthor())
                 .publisher(bookDTO.getPublisher())
                 .publishedDate(bookDTO.getPublishedDate())
@@ -72,11 +71,10 @@ public class BookService implements IBookService {
 
         if (bookUpdate != null) {
             Category existingCategory = categoryRepository.
-                    findById(bookDTO.getCategory_id())
-                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with id " + bookDTO.getCategory_id()));
+                    findById(bookDTO.getCategoryId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Category not found with id " + bookDTO.getCategoryId()));
 
             bookUpdate.setName(bookDTO.getName());
-            bookUpdate.setImagePath(bookDTO.getImagePath());
             bookUpdate.setAuthor(bookDTO.getAuthor());
             bookUpdate.setPublisher(bookDTO.getPublisher());
             bookUpdate.setPublishedDate(bookDTO.getPublishedDate());
