@@ -13,7 +13,6 @@ import DetailInfo from "./DetailInfo";
 function BookDetailComp() {
   const { id } = useParams();
   const book = useSelector((state) => state.books.a_book);
-  console.log(book);
 
   const dispatch = useDispatch();
 
@@ -43,7 +42,7 @@ function BookDetailComp() {
       {book ? (
         <div className="container flex flex-wrap">
           {/* 1/3 bên trái */}
-          <div className="w-full md:w-4/12 border">
+          <div className="w-full md:w-4/12">
             <div className="mt-4 ">
               {/* map image click vô hiển thị */}
               <ImageSlider cover_list={cover_list} />
