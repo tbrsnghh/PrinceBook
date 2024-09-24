@@ -114,5 +114,15 @@ public class BookService implements IBookService {
         return bookImageRepository.findByBookId(bookId);
     }
 
+    @Override
+    public BookImage getBookImageById(Long bookImageId) {
+        return bookImageRepository.findById(bookImageId).orElse(null);
+    }
+
+    @Override
+    public void deleteBookImageById(Long bookImageId) {
+        bookImageRepository.deleteById(bookImageId);
+    }
+
 
 }

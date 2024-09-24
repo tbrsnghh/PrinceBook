@@ -222,16 +222,16 @@ public class BookController {
 
     @DeleteMapping("/deleteImage/{id}")
     public ResponseEntity<ApiResponse> deleteImage(@PathVariable Long id) {
-        BookImage bookImage = bookService.getStudentImageById(id);
+        BookImage bookImage = bookService.getBookImageById(id);
 
-        if(studentImage == null) {
-            throw new ResourceNotFoundException("Student image not found id:" + id);
+        if(bookImage == null) {
+            throw new ResourceNotFoundException("Book image not found id:" + id);
         }
-        studentService.deleteStudentImageById(id);
+        bookService.deleteBookImageById(id);
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .message("Xóa thành công " + id)
-                .data(studentImage).build();
+                .data(bookImage).build();
         return ResponseEntity.ok(apiResponse);
     }
 }

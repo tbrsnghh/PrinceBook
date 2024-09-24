@@ -33,6 +33,9 @@ public class OrderDTO {
 
     private String status;
 
+    @JsonProperty("total_Price")
+    private Double totalPrice;
+
     @JsonProperty("shipping_method")
     private String shippingMethod;
 

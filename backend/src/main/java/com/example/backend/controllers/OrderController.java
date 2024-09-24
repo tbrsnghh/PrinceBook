@@ -1,6 +1,7 @@
 package com.example.backend.controllers;
 
 import com.example.backend.dtos.OrderDTO;
+import com.example.backend.exceptions.ResourceNotFoundException;
 import com.example.backend.models.Order;
 import com.example.backend.responses.ApiResponse;
 import com.example.backend.services.OrderService;
@@ -68,6 +69,44 @@ public class OrderController {
         ApiResponse apiResponse = ApiResponse.builder()
                 .data(orderByUserName)
                 .message("Orders retrieved successfully!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
+    }
+
+    // Tính số lượng đơn hàng
+    @GetMapping("/countOrders")
+    public ResponseEntity<ApiResponse> getOrderCount() {
+        Long countOfOrders = orderService.calculateOfOrder();
+        // kiểm tra nếu không có đơn hàng nào
+        if (countOfOrders == 0) {
+            return ResponseEntity.ok(ApiResponse.builder()
+                    .data(countOfOrders)
+                    .message("Khong co đon hang nao!")
+                    .status(HttpStatus.OK.value())
+                    .build());
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(countOfOrders)
+                .message("Count of orders retrieved successfully!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
+    }
+    // Tính tổng doanh số
+    @GetMapping("/sumOrders")
+    public ResponseEntity<ApiResponse> getSumOrders() {
+        Double sumOfOrders = orderService.calculateOfRevenue();
+        if (sumOfOrders == 0) {
+            return ResponseEntity.ok(ApiResponse.builder()
+                    .data(sumOfOrders)
+                    .message("Tong doanh so bang 0!")
+                    .status(HttpStatus.OK.value())
+                    .build());
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(sumOfOrders)
+                .message("Sum of orders retrieved successfully!")
                 .status(HttpStatus.OK.value())
                 .build();
         return ResponseEntity.ok().body(apiResponse);

@@ -26,12 +26,12 @@ public class OrderDetail {
     private Book book;
 
     @Column(nullable = false)
-    private Float price;
+    private Double price;
 
     @Column(nullable = false)
     private int count;
 
-    @Column(name="total_money",nullable = false)
-    private Float totalMoney;
+    @Column(name="total_price",nullable = false)
+    private Double totalPrice;
 
 }
