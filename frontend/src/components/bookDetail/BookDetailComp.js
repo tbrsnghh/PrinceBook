@@ -6,7 +6,7 @@ import { getBookDetail } from "../../store/booksSlice";
 import "./bookDetail.scss";
 import ImageSlider from "./ImageSlider";
 import Offers from "./Offers";
-import ShippingInfo from "./ShippingInfo";
+import ShippingInfo from "./ShippingInfo"; 
 import Buying from "./Buying";
 import DetailInfo from "./DetailInfo";
 
