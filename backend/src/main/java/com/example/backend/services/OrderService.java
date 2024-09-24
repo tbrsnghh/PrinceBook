@@ -31,6 +31,7 @@ public class OrderService implements IOrderService{
                 .address(orderDTO.getAddress())
                 .note(orderDTO.getNote())
                 .status(orderDTO.getStatus())
+                .totalPrice(orderDTO.getTotalPrice())
                 .orderDate(new Date())
                 .shippingMethod(orderDTO.getShippingMethod())
                 .shippingAddress(orderDTO.getShippingAddress())
@@ -40,8 +41,6 @@ public class OrderService implements IOrderService{
                 .build();
         return orderRepository.save(newOrder);
     }
-
-
 
     @Override
     public Order getOrderById(Long id) {
@@ -62,5 +61,17 @@ public class OrderService implements IOrderService{
     public List<Order> findByUserName(String userName) {
         return orderRepository.findByUserName(userName);
     }
+
+    @Override
+    public Long calculateOfOrder() {
+        return orderRepository.calculateOfOrder();
+    }
+
+    @Override
+    public Double calculateOfRevenue() {
+        return orderRepository.calculateOfRevenue();
+    }
+
+
 }
 

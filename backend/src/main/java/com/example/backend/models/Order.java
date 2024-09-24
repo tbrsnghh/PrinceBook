@@ -40,8 +40,8 @@ public class Order extends BaseEntity{
 
     private String status;
 
-    @Column(name="total_money")
-    private Long totalMoney;
+    @Column(name="total_price")
+    private Double totalPrice;
 
     @Column(name="shipping_method")
     private String shippingMethod;

@@ -8,9 +8,10 @@ import com.example.backend.models.OrderDetail;
 import java.util.List;
 
 public interface IOrderDetailService {
+    List<OrderDetail> getAllOrderDetail();
     OrderDetail saveOrderDetail(OrderDetailDTO orderDetailDTO);
     OrderDetail getOrderDetailById(Long id);
     OrderDetail updateOrderDetail(Long id, OrderDetailDTO orderDetailDTO);
-    void deleteOrder(Long id);
+    void deleteOrderById(Long id);
     List<OrderDetail> findByOrderId(Long orderId);
 }

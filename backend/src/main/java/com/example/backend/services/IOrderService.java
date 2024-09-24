@@ -1,9 +1,9 @@
-// package com.example.backend.services;
+ package com.example.backend.services;
 
-// import com.example.backend.dtos.OrderDTO;
-// import com.example.backend.models.Order;
+ import com.example.backend.dtos.OrderDTO;
+ import com.example.backend.models.Order;
 
-// import java.util.List;
+ import java.util.List;
 
 
 public interface IOrderService {
@@ -13,5 +13,8 @@ public interface IOrderService {
     Order updateOrder(Long id, OrderDTO orderDTO);
     void deleteOrder(Long id);
     List<Order> findByUserName(String userName);
+
+    Long calculateOfOrder();
+    Double calculateOfRevenue();
 }
 

@@ -231,6 +231,7 @@ public class BookController {
         ApiResponse apiResponse = ApiResponse.builder()
                 .status(HttpStatus.OK.value())
                 .message("Xóa thành công " + id)
+                .data(bookImage).build();
                 .data(bookImage)
                 .build();
         return ResponseEntity.ok(apiResponse);
