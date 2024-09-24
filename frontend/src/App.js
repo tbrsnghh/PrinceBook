@@ -25,8 +25,9 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/book/:id" element={<BookDetailPage />}></Route>
           <Route path="/category/:id" element={<SpecificCategory />}></Route>
-          <Route path="/book/:id" element={<BookDetailPage />}></Route>
+          
           <Route path="/account" element={<Account />}></Route>
+          
           {/* //admin */}
           <Route path="/notfound" element={<NotFound />}></Route>
 
