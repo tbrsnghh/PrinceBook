@@ -4,7 +4,7 @@ export default function Footer() {
   return (
   <>
   
-  <footer class="main-footer fixed-bottom">
+  <footer class="main-footer ">
     <strong>Copyright © 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">

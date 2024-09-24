@@ -5,6 +5,7 @@ import cartSlice from './cartSlice';
 import categoriesSlice from './categoriesSlice';
 import CateSclice from './CateSclice';
 import orderDetailSlice from './orderDetailSlice';
+import Order1Slice from './Order1Slice';
 
 const store=configureStore({
     reducer:{
@@ -13,7 +14,8 @@ const store=configureStore({
         cart: cartSlice,
         categories: categoriesSlice,
         category: CateSclice,
-        orderDetail: orderDetailSlice
+        orderDetail: orderDetailSlice,
+        order1:Order1Slice
     }
 })
 export default store

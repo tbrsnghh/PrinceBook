@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { Table } from 'reactstrap';
 import Users from './Users';
+import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 export default function ListUser() {
 
    
     return (
         <>
-
+     <ToastContainer/>
             <div class="content-wrapper">
 
 
                 <div class="card card-primary mx-3">
                     <div class="card-header">
-                        <h3 class="card-title">Danh sach user</h3>
+                        <h3 class="card-title">List User</h3>
                     </div>
                     <Table
        
@@ -50,7 +52,7 @@ export default function ListUser() {
                         </tbody>
                     </Table>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">add new user</button>
+                <Link to={"/admin/user/adduser"}>       <button type="submit" class="btn btn-primary">add new user</button></Link> 
                     </div>
                 </div>
             </div>

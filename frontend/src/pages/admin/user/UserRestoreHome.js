@@ -2,11 +2,11 @@ import React from 'react'
 import Header from '../../../components/admin/components/Header'
 import Dasborad from '../../../components/admin/components/Dasborad'
 import Footer from '../../../components/admin/components/Footer'
-import ListUser from '../../../components/admin/components/user/ListUser'
-import { CSVLink, CSVDownload } from "react-csv";
+import Restore from '../../../components/admin/components/user/Restore'
 
-export default function UserHome() {
-  
+
+
+export default function UserRestoreHome() {
   return (
    <>
    
@@ -14,7 +14,7 @@ export default function UserHome() {
 
 <Dasborad/>
 
-<ListUser/>
+<Restore/>
 <Footer/>
    
    
