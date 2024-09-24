@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const BASE_URL = 'http://localhost:8080/api';
-const BASE_URL = 'http://ec2-18-136-203-0.ap-southeast-1.compute.amazonaws.com:8080/api';
+const BASE_URL = 'http://localhost:8080/api';
+
 
 export const login= createAsyncThunk('user/login',async (userAdd,thunkAPI)=>{
     const url = BASE_URL+"/auth";

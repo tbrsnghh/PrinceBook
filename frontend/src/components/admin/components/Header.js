@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import logo from "../../../asset/img/logo.png";
 import { Link } from 'react-router-dom';
-
+import '../dist/css/adminlte.min.css';
 export default function Header() {
 
   const [openMenu, setOpenMenu] = useState(null);
@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <>
 
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light w-10/12 fixed-top">
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light w-10/12 ">
 
         <ul class="navbar-nav">
           <li class="nav-item">
