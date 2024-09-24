@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItems from "./CartItems";
-import { addItemToOrderDetail, updateItemChecked } from "../../store/orderDetailSlice";
+import { addItemToOrderDetail, updateAllItemsChecked } from "../../store/orderDetailSlice";
+import { calcTotalMoney, calcTotalQuantity, toggleAllItemsChecked, toggleChecked } from "../../store/cartSlice";
 
 export default function Cart1() {
-  const {
-    cart: { cartItems, totalQuantity },
-    orderDetail: { orderDetail, status },
-  } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems, totalQuantity, selectAll, totalMoney} = cart;
   const dispatch = useDispatch();
-  const [selectAll, setSelectAll] = useState(true);
+
+  useEffect(() => {
+    dispatch(calcTotalMoney());
+    dispatch(calcTotalQuantity());
+    console.log("cart", cart);
+  }, [cart]);
   const handleSelectAll = () => {
-    setSelectAll((prev) => !prev);
+    dispatch(toggleAllItemsChecked());
   };
 
   const handleToggleItem = (item) => {
-    dispatch(addItemToOrderDetail(item));
-    console.log("Toggle item:", item);
-    console.log(orderDetail);
-    
-     // Cập nhật trạng thái checked của item
+    dispatch(toggleChecked(item.id));
   };
-  const addOrder = () => {
-    
-  };
+
   return (
     <div className="flex flex-col md:flex-row p-4">
       <div className="flex flex-col md:basis-3/4 mr-16">
@@ -43,8 +41,8 @@ export default function Cart1() {
             <span>Tiki Trading</span>
           </div>
         </div>
-        {/* Cart items */}
 
+        {/* Cart items */}
         <div className="space-y-2 my-1">
           <div className="flex items-center">
             <div className="basis-1/24 px-4 "></div>
@@ -54,9 +52,8 @@ export default function Cart1() {
             <div className="basis-2/12 px-2 text-center">Quantity</div>
             <div className="basis-2/12 px-2 text-center">Subtotal</div>
           </div>
-          {cartItems.map((item, index) => (
-            <CartItems key={index} item={item} 
-            onToggleItem={() => handleToggleItem(item)}/>
+          {cartItems && cartItems.map((item, index) => (
+            <CartItems key={index} item={item} onToggleItem={() => handleToggleItem(item)} />
           ))}
         </div>
       </div>
@@ -69,41 +66,19 @@ export default function Cart1() {
               Văn phòng 2987/7 Đường Hùng Vương Ấp Hòa Bình, Xã Vĩnh Thanh,
               Huyện Nhơn Trạch, Đồng Nai
             </div>
-            <a href="#" className="text-blue-500">
-              Thay đổi
-            </a>
+            <a href="#" className="text-blue-500">Thay đổi</a>
           </div>
         </div>
-        {/* Phần giảm giá nếu làm được */}
-        {/* <div className="mb-4">
-          <div className="font-bold">Tiki Khuyến Mãi</div>
-          <div className="flex items-center justify-between bg-white p-2 rounded border">
-            <div className="flex items-center">
-              <i className="fas fa-tag text-green-500 mr-2"></i>
-              <span>Giảm 10K phí vận chuyển</span>
-            </div>
-            <button className="text-blue-500">Bỏ Chọn</button>
-          </div>
-          <a href="#" className="text-blue-500 text-sm">
-            Chọn hoặc nhập Khuyến mãi khác
-          </a>
-        </div> */}
+
         <div className="mb-4">
           <div className="flex justify-between">
             <span>Tạm tính</span>
             {/* <span>{order_detail.total}</span> */}
           </div>
-          {/* <div className="flex justify-between text-green-500">
-            <span>Giảm giá từ Deal</span>
-            <span>-29.700đ</span>
-          </div> */}
         </div>
         <div className="flex justify-between text-red-500 font-bold mb-4">
           <span>Tổng tiền</span>
-          <span>89.300đ</span>
-        </div>
-        <div className="text-sm text-gray-500 mb-4">
-          Tiết kiệm 29.700đ (Đã bao gồm VAT nếu có)
+          <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalMoney)}</span>
         </div>
         <button className="w-full bg-red-500 text-white py-2 rounded">
           Mua Hàng (1)

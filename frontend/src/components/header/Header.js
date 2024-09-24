@@ -15,7 +15,6 @@ export default function Header() {
   ]; // Sample notifications  
   // Sample categories  
   const { categories } = useSelector((state) => state.categories);
-  console.log(categories);
   
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
