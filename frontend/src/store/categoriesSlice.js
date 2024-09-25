@@ -8,10 +8,10 @@ const initialState = {
 };
 
 
-const BASE_URL = BASE_URL_AWS_1;
+const BASE_URL = BASE_URL_LOCAL;
 
 export const getCategories=createAsyncThunk('categories/getCategories',async (thunkAPI)=>{
-  const url = BASE_URL;
+  const url = BASE_URL + "/category";
   try{
       const response=await axios.get(url);
       return response.data;
@@ -35,8 +35,7 @@ const categoriesSlice = createSlice({
       .addCase(getCategories.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.categories = action.payload.data;
-        console.log(action.payload);
-        
+        console.log(action.payload.data);
       })
       .addCase(getCategories.rejected, (state, action) => {
         state.status = "failed";
