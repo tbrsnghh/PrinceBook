@@ -12,7 +12,6 @@ export default function Cart1() {
   useEffect(() => {
     dispatch(calcTotalMoney());
     dispatch(calcTotalQuantity());
-    console.log("cart", cart);
   }, [cart]);
   const handleSelectAll = () => {
     dispatch(toggleAllItemsChecked());

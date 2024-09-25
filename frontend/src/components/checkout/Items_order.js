@@ -1,9 +1,9 @@
 import React from "react";  
 
-export default function ItemsOrder({ items }) {  
+export default function ItemsOrder({ items, order, handleThanhToan }) {  
   return (  
-    <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden p-6">  
-      <h2 className="text-2xl font-bold mb-4">Items Order</h2>  
+    <div className="w-full md:w-1/2 mx-auto bg-white rounded-lg overflow-hidden p-6 border border-gray-300">  
+      <h2 className="text-2xl font-bold mb-4">Order</h2>  
       {items && items.length > 0 ? (  
         items.map((item, index) => (  
           <div key={index} className="flex justify-between items-center p-4 border-b last:border-none">  
@@ -22,6 +22,17 @@ export default function ItemsOrder({ items }) {
       ) : (  
         <p className="text-gray-500 text-center">No items ordered.</p>  
       )}  
+      <div className="mt-4 p-4 border-t border-gray-300 bg-gray-100 rounded-lg">  
+        <div className="flex justify-between font-bold text-lg">  
+          <span>Tổng tiền</span>  
+          <span className="text-red-600">{new Intl.NumberFormat("vi-VN", {style: "currency", currency: "VND"}).format(order.total_Price)}</span>  
+        </div>  
+      </div>  
+      <div className="mt-4">  
+        <button className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleThanhToan}>  
+          Thanh toán  
+        </button>  
+      </div>  
     </div>  
   );  
 }
