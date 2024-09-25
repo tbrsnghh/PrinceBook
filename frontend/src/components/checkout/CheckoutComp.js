@@ -40,29 +40,49 @@ const CheckoutComp = () => {
     }));
   }, [note, shipping_address, paymentMethod]);
 
-  const handleThanhToan = async () => {
-    try {
-      const resultAction = await dispatch(postOrder(order)).unwrap();
-      alert(resultAction.message);
+  // const handleThanhToan = async () => {
+  //   try {
+  //     const resultAction = await dispatch(postOrder(order)).unwrap();
+  //     alert(resultAction.message);
 
-      items_order.forEach((item) => {
-        dispatch(
-          postOrderDetail({
-            price: item.price,
-            count: item.quantity,
-            order_id: resultAction.data.id,
-            book_id: item.id,
-            total_price: item.total,
-          })
-        );
-        dispatch(removeItemFromCart(item.id));
-      });
-      setTimeout(() => {
-        window.location.href = "/cart";
-      }, 100);
-    } catch (err) {
-      alert("Đặt hàng thất bại");
-    }
+  //     items_order.forEach((item) => {
+  //       dispatch(
+  //         postOrderDetail({
+  //           price: item.price,
+  //           count: item.quantity,
+  //           order_id: resultAction.data.id,
+  //           book_id: item.id,
+  //           total_price: item.total,
+  //         })
+  //       );
+  //       dispatch(removeItemFromCart(item.id));
+  //     });
+  //     setTimeout(() => {
+  //       window.location.href = "/myorder";
+  //     }, 100);
+  //   } catch (err) {
+  //     alert("Đặt hàng thất bại");
+  //   }
+  // };
+  const handleThanhToan = async () => {
+    const resultAction = await dispatch(postOrder(order)).unwrap();
+    alert(resultAction.message);
+  
+    items_order.forEach((item) => {
+      dispatch(
+        postOrderDetail({
+          price: item.price,
+          count: item.quantity,
+          order_id: resultAction.data.id,
+          book_id: item.id,
+          total_price: item.total,
+        })
+      );
+      dispatch(removeItemFromCart(item.id));
+    });
+    setTimeout(() => {
+      window.location.href = "/myorder";
+    }, 100);
   };
 
   return (

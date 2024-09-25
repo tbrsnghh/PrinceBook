@@ -10,7 +10,18 @@ const initialState = {
   status: "idle",
   error: null,
 };
-
+export const getOrders = createAsyncThunk(
+  "orders/getOrders",
+  async (username, thunkAPI) => {
+    const url = `${BASE_URL}/order/list/${username}`;
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) { 
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)
 // Async thunk to post an order via API
 export const postOrder = createAsyncThunk(
   "order/postOrder",
@@ -37,10 +48,25 @@ const ordersSlice = createSlice({
       })
       .addCase(postOrder.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.order_latest = action.payload;
-        state.orders.push(action.payload);
+        state.order_latest = action.payload.data;
+        // state.orders.push(action.payload);
+        console.log(state.order_latest);
+        console.log(state.orders);
+        
+        
       })
       .addCase(postOrder.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      .addCase(getOrders.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.orderslist = action.payload.data;
+      })
+      .addCase(getOrders.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       });

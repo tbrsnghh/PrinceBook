@@ -17,6 +17,7 @@ import UserRestoreHome from "./pages/admin/user/UserRestoreHome";
 import HomeOrder from "./pages/admin/order/HomeOrder";
 import OrderDetail from "./pages/admin/order/OrderDetail";
 import Checkout from "./pages/checkout/Checkout";
+import MyOrder from "./pages/order/MyOrder";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="/category/:id" element={<SpecificCategory />}></Route>
           <Route path="/checkout" element={<Checkout/>}></Route>
           <Route path="/account" element={<Account />}></Route>
-          
+          <Route path="myorder" element={<MyOrder />}></Route>
           {/* //admin */}
           <Route path="/notfound" element={<NotFound />}></Route>
 
