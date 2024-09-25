@@ -23,7 +23,7 @@ export default function Login() {
   useEffect(() => {
 
     
-    if (status && message) {
+    if (status && message && user) {
       if (status == 200 && message) {
 
         if (user.role == "ADMIN") {
