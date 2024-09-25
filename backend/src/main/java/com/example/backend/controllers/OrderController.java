@@ -55,10 +55,10 @@ public class OrderController {
     }
 
     //get Order by username
-    @GetMapping("/{username}")
+    @GetMapping("/list/{username}")
     public ResponseEntity<ApiResponse> getOrder(@PathVariable String username) {
         List<Order> orderByUserName = orderService.findByUserName(username);
-        if (orderByUserName.isEmpty()) {
+        if (orderByUserName == null || orderByUserName.isEmpty()) {
             ApiResponse apiResponse = ApiResponse.builder()
                     .data(null)
                     .message("Order not found!")
@@ -72,6 +72,27 @@ public class OrderController {
                 .status(HttpStatus.OK.value())
                 .build();
         return ResponseEntity.ok().body(apiResponse);
+    }
+
+    //get Order by username and limit = 1
+    @GetMapping("/{username}")
+    public ResponseEntity<ApiResponse> getOrderLatest(@PathVariable String username) {
+        Order order = orderService.findLatestOrderByUserName(username);
+        if (order == null) {
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(null)
+                    .message("Order not found!")
+                    .status(HttpStatus.NOT_FOUND.value())
+                    .build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+        }
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(order)
+                .message("Order retrieved successfully!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok(apiResponse);
     }
 
     // Tính số lượng đơn hàng

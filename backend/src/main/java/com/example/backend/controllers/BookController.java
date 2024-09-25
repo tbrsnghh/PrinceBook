@@ -51,7 +51,7 @@ public class BookController {
         try {
             List<BookDTO> bookDTOList = objectMapper.readValue(jsonData, new TypeReference<>() {});
             bookService.insertBooks(bookDTOList);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Books added successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Books added successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error processing json data: " + e.getMessage());
         }
@@ -272,6 +272,7 @@ public class BookController {
         return ResponseEntity.ok().body(apiResponse);
     }
 
+    // Tìm sách theo tên
     @GetMapping("/searchBooks")
     public ResponseEntity<ApiResponse> searchBooksByName(@RequestParam String bookName){
         List<Book> bookList = bookService.searchBooksByName(bookName);
@@ -291,10 +292,11 @@ public class BookController {
         return ResponseEntity.ok().body(apiResponse);
     }
 
+    // Tìm danh sách quyển sách theo category
     @GetMapping("/searchBooks/category")
     public ResponseEntity<ApiResponse> searchBooksByCategoryName(@RequestParam String categoryName){
-        List<Book> bookList = bookService.findBooksByCategoryName(categoryName);
-        if (bookList.isEmpty()) {
+        List<Book> bookListWithCategory = bookService.findBooksByCategoryName(categoryName);
+        if (bookListWithCategory.isEmpty()) {
             ApiResponse apiResponse = ApiResponse.builder()
                     .message("Khong co quyen sach nao voi category: " + categoryName)
                     .status(HttpStatus.NOT_FOUND.value())
@@ -303,7 +305,7 @@ public class BookController {
         }
 
         ApiResponse apiResponse = ApiResponse.builder()
-                .data(bookList)
+                .data(bookListWithCategory)
                 .message("Da tim thay sach!")
                 .status(HttpStatus.OK.value())
                 .build();

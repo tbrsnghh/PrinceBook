@@ -14,6 +14,7 @@ public interface IOrderService {
     void deleteOrder(Long id);
     List<Order> findByUserName(String userName);
 
+    Order findLatestOrderByUserName(String userName);
     Long calculateOfOrder();
     Double calculateOfRevenue();
 }

@@ -5,6 +5,8 @@ import com.example.backend.dtos.OrderDTO;
 import com.example.backend.models.Order;
 import com.example.backend.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -60,6 +62,13 @@ public class OrderService implements IOrderService{
     @Override
     public List<Order> findByUserName(String userName) {
         return orderRepository.findByUserName(userName);
+    }
+
+    @Override
+    public Order findLatestOrderByUserName(String userName) {
+        Pageable pageable = PageRequest.of(0,1);
+        List<Order> orders = orderRepository.findLatestOrderByUserName(userName, pageable);
+        return orders.isEmpty() ? null : orders.get(0);
     }
 
     @Override
