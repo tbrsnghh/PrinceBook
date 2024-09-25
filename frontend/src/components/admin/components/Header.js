@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <>
 
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light w-10/12 ">
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light w-10/12 d-flex ">
 
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -137,15 +137,8 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-
-
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-
-
-
+      <aside class="main-sidebar sidebar-dark-primary elevation-4 hieght-auto">
         <div class="sidebar">
-
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
               <img src={logo} class="img-circle elevation-2" alt="User Image" />
@@ -154,17 +147,13 @@ export default function Header() {
               <a href="#" class="d-block">Admin</a>
             </div>
           </div>
-
-
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-
               <li className={`nav-item has-treeview ${openMenu === 1 ? 'menu-open' : ''}`}>
                 <a href="#" class="nav-link" onClick={() => toggleMenu(1)}>
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
-                    Danh mục
+                Category
                     <i class="fas fa-angle-left right"></i>
                     <span class="badge badge-info right">6</span>
                   </p>
@@ -173,13 +162,13 @@ export default function Header() {
                   <li class="nav-item">
                     <a href="pages/layout/fixed-sidebar.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Thêm Danh mục </p>
+                      <p>Add Category</p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="pages/layout/fixed-topnav.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Sửa Danh mục </p>
+                      <p>Edit Category</p>
                     </a>
                   </li>
 
@@ -216,18 +205,18 @@ export default function Header() {
                 </ul>
               </li>
               <li className={`nav-item has-treeview ${openMenu === 3 ? 'menu-open' : ''}`}>
-                <a href="#" class="nav-link" onClick={() => toggleMenu(3)}>
+                <Link to={'/admin/product'} class="nav-link" onClick={() => toggleMenu(3)}>
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
-                    Sản phẩm
+                Product
                     <i class="fas fa-angle-left right"></i>
                   </p>
-                </a>
+                </Link>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="pages/forms/advanced.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Advanced Elements</p>
+                      <p>List product</p>
                     </a>
                   </li>
                   <li class="nav-item">

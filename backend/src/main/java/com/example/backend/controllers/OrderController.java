@@ -111,4 +111,24 @@ public class OrderController {
                 .build();
         return ResponseEntity.ok().body(apiResponse);
     }
+
+    // get theo id 
+    @GetMapping("/by/{id}")
+    public ResponseEntity<ApiResponse> getOrderByIda(@PathVariable Long id) {
+        Order order = orderService.getOrderById(id);
+        if (order == null) {
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .data(null)
+                    .message("Order not found!")
+                    .status(HttpStatus.NOT_FOUND.value())
+                    .build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(order)
+                .message("Order retrieved successfully!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
+    }
 }

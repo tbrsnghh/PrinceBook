@@ -19,5 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     // Tính tổng doanh số
     @Query("SELECT sum(o.totalPrice) as total_revenue FROM Order o")
     Double calculateOfRevenue();
+
+
 }
 
