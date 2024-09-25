@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { BASE_URL_LOCAL, BASE_URL_AWS_1, BASE_URL_AWS_2 } from '../store/base_url';
 const initialState = {
   categories: [],
   status: "idle",
   error: null,
 };
-// const BASE_URL = 'http://ec2-54-169-253-108.ap-southeast-1.compute.amazonaws.com:8080';
-// const BASE_URL = 'http://localhost:8080//api/category';
-const BASE_URL = 'http://ec2-18-136-203-0.ap-southeast-1.compute.amazonaws.com:8080/api/category';
+
+
+const BASE_URL = BASE_URL_AWS_1;
+
 export const getCategories=createAsyncThunk('categories/getCategories',async (thunkAPI)=>{
   const url = BASE_URL;
   try{

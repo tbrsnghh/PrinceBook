@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItems from "./CartItems";
 import { addItemToOrderDetail, updateAllItemsChecked } from "../../store/orderDetailSlice";
 import { calcTotalMoney, calcTotalQuantity, toggleAllItemsChecked, toggleChecked } from "../../store/cartSlice";
+import TamTinh from "./TamTinh";
 
 export default function Cart1() {
   const cart = useSelector((state) => state.cart);
@@ -57,33 +58,7 @@ export default function Cart1() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col md:basis-1/4 bg-gray-100 p-4 rounded">
-        <div className="mb-4">
-          <div className="font-bold">Giao tới</div>
-          <div className="text-sm">
-            <div>Nguyễn Hoàng Hà | 0393671401</div>
-            <div>
-              Văn phòng 2987/7 Đường Hùng Vương Ấp Hòa Bình, Xã Vĩnh Thanh,
-              Huyện Nhơn Trạch, Đồng Nai
-            </div>
-            <a href="#" className="text-blue-500">Thay đổi</a>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <div className="flex justify-between">
-            <span>Tạm tính</span>
-            {/* <span>{order_detail.total}</span> */}
-          </div>
-        </div>
-        <div className="flex justify-between text-red-500 font-bold mb-4">
-          <span>Tổng tiền</span>
-          <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalMoney)}</span>
-        </div>
-        <button className="w-full bg-red-500 text-white py-2 rounded">
-          Mua Hàng (1)
-        </button>
-      </div>
+      <TamTinh totalMoney={totalMoney}/>
     </div>
   );
 }
