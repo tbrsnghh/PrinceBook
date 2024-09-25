@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Items_order from "./Items_order";
 import UserInfo from "./UserInfo";
 import { postOrder } from "../../store/orderSlice";
-
 import { removeItemFromCart } from "../../store/cartSlice";
 import { postOrderDetail } from "../../store/orderDetailSlice";
 
-export default function CheckoutComp() {
+const CheckoutComp = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
   const { status, error, order_latest, orders } = useSelector((state) => state.orders);
@@ -31,8 +31,6 @@ export default function CheckoutComp() {
     payment_method: "",
   });
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     setOrder((prevOrder) => ({
       ...prevOrder,
@@ -41,34 +39,29 @@ export default function CheckoutComp() {
       payment_method: paymentMethod,
     }));
   }, [note, shipping_address, paymentMethod]);
-  
+
   const handleThanhToan = async () => {
     try {
-      const resultAction = await dispatch(postOrder(order)).unwrap(); // Wait for the order to be posted
-
-      alert("Đặt hàng thành công");
+      const resultAction = await dispatch(postOrder(order)).unwrap();
+      alert(resultAction.message);
 
       items_order.forEach((item) => {
         dispatch(
           postOrderDetail({
             price: item.price,
             count: item.quantity,
-            order_id: resultAction.id, // Use the returned order id
+            order_id: resultAction.data.id,
             book_id: item.id,
             total_price: item.total,
           })
         );
-        console.log("Order detail posted", item.id);
         dispatch(removeItemFromCart(item.id));
       });
-
-      // Clear form and redirect
       setTimeout(() => {
         window.location.href = "/cart";
       }, 100);
     } catch (err) {
       alert("Đặt hàng thất bại");
-      console.error("Error placing order: ", err);
     }
   };
 
@@ -94,4 +87,7 @@ export default function CheckoutComp() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutComp;
+
