@@ -69,7 +69,7 @@ export default function Header() {
 
         </div>
         <div className="flex space-x-4 text-lg items-center">
-          <form className="flex border border-gray-200 rounded-lg" onSubmit={handleSearchSubmit}>
+          <form className="search-bar" onSubmit={handleSearchSubmit}>
             <input className="p-1 mx-1 w-full focus:outline-none" type="text" placeholder="Search"  onChange={handleSearchChange}/>
             <button className="p-1 button-2" type="submit">
               <i className="fas fa-search"></i>
