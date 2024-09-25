@@ -1,12 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL_LOCAL, BASE_URL_AWS_1, BASE_URL_AWS_2 } from '../store/base_url';
 
-// const BASE_URL = 'https://66a07b337053166bcabb89f5.mockapi.io/api/v1/';
-// const BASE_URL = 'http://ec2-54-169-253-108.ap-southeast-1.compute.amazonaws.com:8080';
-// Instance 1
-const BASE_URL = 'http://ec2-54-169-253-108.ap-southeast-1.compute.amazonaws.com:8080';
-// Instance 2
-// const BASE_URL = 'http://ec2-18-136-203-0.ap-southeast-1.compute.amazonaws.com:8080';
+const BASE_URL = BASE_URL_AWS_1;
+
 export const getBooks=createAsyncThunk('books/getBooks',async (thunkAPI)=>{
   const url = BASE_URL + "/api/book";
   try{

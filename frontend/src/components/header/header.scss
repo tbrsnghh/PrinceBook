@@ -13,3 +13,6 @@ a {
         background-color: $button-cl-gray; 
       } 
 }
+.search-bar{
+    @apply flex border border-gray-200 rounded-lg !important;
+}
