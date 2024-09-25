@@ -19,7 +19,18 @@ const handle_signup = () => {
     
   dispatch(register(userRes));
 }
+useEffect(() => {
 
+    
+  if (status && message) {
+    if (status == 200 && message) {
+
+    toast.success(message);
+    } else {
+      toast.error(message);
+    }
+  }
+}, [status, message]);
   return (
    <>
 

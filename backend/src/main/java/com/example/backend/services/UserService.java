@@ -60,7 +60,7 @@ public class UserService implements IUserService {
                 .phone(userDto.getPhone())
                 .ngay_sinh(userDto.getNgay_sinh())
                 
-                .role( !userDto.getRole().isEmpty() ? userDto.getRole() : "USER")
+                .role(  "USER")
                 .build();
         return userRepository.save(usera);
     }
