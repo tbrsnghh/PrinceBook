@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SpecificCategory from "./pages/specificCategory/SpecificCategory";
 import UserRestoreHome from "./pages/admin/user/UserRestoreHome";
 import HomeOrder from "./pages/admin/order/HomeOrder";
+import OrderDetail from "./pages/admin/order/OrderDetail";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
           <Route path="/admin/user/adduser" element={  <ProtectedRoute> {" "}  <AddUserHome />{" "}  </ProtectedRoute>  }  ></Route>
           <Route path="/admin/user/restore" element={  <ProtectedRoute> {" "}  <UserRestoreHome />{" "}  </ProtectedRoute>  }  ></Route>
           <Route path="/admin/order"  element={  <ProtectedRoute>  {" "}  <HomeOrder />{" "}  </ProtectedRoute>  } ></Route>
-
+          <Route path="/admin/order/:id"  element={  <ProtectedRoute>  {" "}  <OrderDetail />{" "}  </ProtectedRoute>  } ></Route>
           {/* bao ve route admin */}
         </Routes>
       </Router>
