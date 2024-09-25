@@ -123,10 +123,22 @@ public class BookService implements IBookService {
         bookImageRepository.deleteById(bookImageId);
     }
 
+//    public void insertBooks(List<BookDTO> bookDTOs) {
+//        List<Book> books = new ArrayList<>(); //tạo một danh sách rỗng để chứa các đối tượng Book
+//
+//        for (BookDTO bookDTO : bookDTOs) {
+//            Book book = convertToEntity(bookDTO); //chuyển đổi từng BookDTO thành Book
+//            books.add(book); //thêm Book vào danh sách books
+//        }
+//
+//        bookRepository.saveAll(books); //lưu toàn bộ danh sách books vào cơ sở dữ liệu
+//    }
+
+    // cập nhật insertBooks
     public void insertBooks (List<BookDTO> bookDTOs) {
         List<Book> books = bookDTOs.stream()
                 .map(this::convertToEntity)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());  //sau khi chuyển đối tượng thành Entity, lưu vào List<Book> thông qua collect(Collectors.toList())
         bookRepository.saveAll(books);
     }
     private Book convertToEntity(BookDTO bookDTO) {
