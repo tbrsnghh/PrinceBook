@@ -32,6 +32,7 @@
          OrderDetail orderDetail = OrderDetail.builder()
                  .order(orderExist)
                  .book(bookExist)
+                 .price(orderDetailDTO.getPrice())
                  .count(orderDetailDTO.getCount())
                  .totalPrice(orderDetailDTO.getTotalPrice())
                  .build();
