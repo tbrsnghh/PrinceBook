@@ -7,14 +7,9 @@ import Categories2 from "../../components/categories/Categories2";
 import { useParams } from "react-router-dom";
 
 export default function SpecificCategory() {
-  const { books, status, error } = useSelector((state) => state.books);
+  const { booksByCategory, status, error } = useSelector((state) => state.books);
   const dispatch = useDispatch();
-  const { id } = useParams();
-
-  // Gọi API để lấy danh sách sách
-  useEffect(() => {
-    // dispatch(getBooksByCategory(id));
-  }, [dispatch, id]);
+  const { categoryname } = useParams();
 
   const renderHomeContent = () => {
     return (
@@ -23,11 +18,12 @@ export default function SpecificCategory() {
           <Categories2 />
         </div>
         <div className="w-4/5 hide-scrollbar">
-          {books ? (
-            <BooksList booksList={books} />
+          {booksByCategory && booksByCategory.length > 0 ? (
+            <BooksList booksList={booksByCategory} />
           ) : (
-            <p>Loading books...</p>
+            <p>Oops! No book found...{categoryname}</p>
           )}{" "}
+
         </div>
       </div>
     );

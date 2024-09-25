@@ -5,15 +5,21 @@ import UserInfo from "./UserInfo";
 import { postOrder } from "../../store/orderSlice";
 import { removeItemFromCart } from "../../store/cartSlice";
 import { postOrderDetail } from "../../store/orderDetailSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CheckoutComp = () => {
-  const dispatch = useDispatch();
+  const location = useLocation();  
+  const order_now = location.state?.order; 
+
+  const dispatch = useDispatch(); const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  const { status, error, order_latest, orders } = useSelector((state) => state.orders);
-  const items_order = cart.cartItems.filter((item) => item.checked);
+  
+  
+  const items_order = order_now ? [order_now ] : cart.cartItems.filter((item) => item.checked);
+  const total_Price = order_now ? order_now.total : cart.totalMoney;
   const user_info = user.user;
-
+  console.log(items_order);
   const [note, setNote] = useState("");
   const [shipping_address, setShippingAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -24,7 +30,7 @@ const CheckoutComp = () => {
     note: "",
     username: user_info.username,
     phone_number: user_info.phone,
-    total_Price: cart.totalMoney,
+    total_Price: total_Price,
     shipping_method: "",
     shipping_address: "",
     shipping_date: "",
@@ -39,34 +45,12 @@ const CheckoutComp = () => {
       payment_method: paymentMethod,
     }));
   }, [note, shipping_address, paymentMethod]);
-
-  // const handleThanhToan = async () => {
-  //   try {
-  //     const resultAction = await dispatch(postOrder(order)).unwrap();
-  //     alert(resultAction.message);
-
-  //     items_order.forEach((item) => {
-  //       dispatch(
-  //         postOrderDetail({
-  //           price: item.price,
-  //           count: item.quantity,
-  //           order_id: resultAction.data.id,
-  //           book_id: item.id,
-  //           total_price: item.total,
-  //         })
-  //       );
-  //       dispatch(removeItemFromCart(item.id));
-  //     });
-  //     setTimeout(() => {
-  //       window.location.href = "/myorder";
-  //     }, 100);
-  //   } catch (err) {
-  //     alert("Đặt hàng thất bại");
-  //   }
-  // };
   const handleThanhToan = async () => {
     const resultAction = await dispatch(postOrder(order)).unwrap();
-    alert(resultAction.message);
+    if (resultAction.error) {
+      console.log(resultAction.error);
+      return;
+    }
   
     items_order.forEach((item) => {
       dispatch(
@@ -81,8 +65,8 @@ const CheckoutComp = () => {
       dispatch(removeItemFromCart(item.id));
     });
     setTimeout(() => {
-      window.location.href = "/myorder";
-    }, 100);
+      navigate("/ok");
+    }, 1000);
   };
 
   return (

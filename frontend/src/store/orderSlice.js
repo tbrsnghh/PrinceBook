@@ -4,12 +4,7 @@ import { BASE_URL_LOCAL } from '../store/base_url';
 
 const BASE_URL = BASE_URL_LOCAL;
 
-const initialState = {
-  orders: [],
-  order_latest: null,  // Only store the latest order separately for easy access
-  status: "idle",
-  error: null,
-};
+
 export const getOrders = createAsyncThunk(
   "orders/getOrders",
   async (username, thunkAPI) => {
@@ -22,6 +17,7 @@ export const getOrders = createAsyncThunk(
     }
   }
 )
+
 // Async thunk to post an order via API
 export const postOrder = createAsyncThunk(
   "order/postOrder",
@@ -37,6 +33,12 @@ export const postOrder = createAsyncThunk(
 );
 
 // Create the slice for orders
+const initialState = {
+  orders: [],
+  order_latest: null,  // Only store the latest order separately for easy access
+  status: "idle",
+  error: null,
+};
 const ordersSlice = createSlice({
   name: "orders",
   initialState,
@@ -52,8 +54,6 @@ const ordersSlice = createSlice({
         // state.orders.push(action.payload);
         console.log(state.order_latest);
         console.log(state.orders);
-        
-        
       })
       .addCase(postOrder.rejected, (state, action) => {
         state.status = "failed";
@@ -64,7 +64,7 @@ const ordersSlice = createSlice({
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.orderslist = action.payload.data;
+        state.orders = action.payload.data;
       })
       .addCase(getOrders.rejected, (state, action) => {
         state.status = "failed";

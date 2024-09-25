@@ -1,21 +1,23 @@
 import React, { useState} from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Notifications from "../notifications/Notifications";
 import Categories from "../categories/Categories";
+import { searchBooks } from "../../store/booksSlice";
 export default function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-  const notifications = [  
-    "New comment on your post",  
-    "New follower: John Doe",  
-    "Your order has been shipped",  
-  ]; // Sample notifications  
+  // const notifications = [  
+  //   "New comment on your post",  
+  //   "New follower: John Doe",  
+  //   "Your order has been shipped",  
+  // ]; // Sample notifications  
   // Sample categories  
   const { categories } = useSelector((state) => state.categories);
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     console.log(searchTerm)
@@ -24,12 +26,19 @@ export default function Header() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     // Thực hiện tìm kiếm hoặc điều hướng đến trang kết quả tìm kiếm
+    dispatch(searchBooks(searchTerm));
+    if (searchTerm === "") {
+      navigate("/");
+    }else{
+      navigate(`/search/${searchTerm}`);
+    }
+    
     console.log("Searching for:", searchTerm);
     // Bạn có thể điều hướng hoặc thực hiện tìm kiếm ở đây
   };
-  const toggleNotifications = () => {  
-    setShowNotifications(!showNotifications); // Toggle notifications visibility  
-  };  
+  // const toggleNotifications = () => {  
+  //   setShowNotifications(!showNotifications); // Toggle notifications visibility  
+  // };  
   const handleMouseEnter = () => {  
     setShowNotifications(true); // Show notifications when hovering over the button  
   };  
@@ -77,7 +86,7 @@ export default function Header() {
           </form>
           
           {/* Show notifications */}
-          <div className="relative"
+          {/* <div className="relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             >  
@@ -85,7 +94,7 @@ export default function Header() {
               <i className="fas fa-bell"></i>  
             </button>  
             {showNotifications && <Notifications notifications={notifications} />}   
-          </div>  
+          </div>   */}
           <Link to={"/cart"} className="pattern-icon">
             <i className="fas fa-shopping-cart"></i>
           </Link>

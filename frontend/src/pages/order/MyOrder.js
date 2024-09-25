@@ -5,20 +5,21 @@ import { getOrders } from "../../store/orderSlice";
 
 export default function MyOrder() {
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.orders);
-  const { orderslist, status, error } = orders;
-
+  
+  const { orders, status, error } = useSelector((state) => state.orders);
+  console.log(orders);
+  
   const user = useSelector((state) => state.user.user);
   useEffect(() => {
     dispatch(getOrders(user.username));
-  }, [dispatch, user]);
+  }, []);
 
   return (
     <div className="container">
       <h1>My Orders</h1>
       {status === "loading" && <div>Loading...</div>}
       {/* {error && <div>{error.message}</div>} */}
-      {orderslist && (
+      {orders && (
         <table className="table">
           <thead>
             <tr>
@@ -29,7 +30,7 @@ export default function MyOrder() {
             </tr>
           </thead>
           <tbody>
-            {orderslist.map((order) => (
+            {orders.map((order) => (
               <tr key={order.id}>
                 <td>{order.id}</td>
                 <td>{order.totalPrice}</td>
