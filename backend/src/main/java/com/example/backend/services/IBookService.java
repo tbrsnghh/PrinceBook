@@ -24,4 +24,8 @@ public interface IBookService {
     BookImage getBookImageById(Long bookImageId);
     void deleteBookImageById(Long bookImageId);
 
+    Long countAllBook();
+    List<Book> searchBooksByName(String bookName);
+    List<Book> findBooksByCategoryName(String categoryName);
+
 }

@@ -33,7 +33,7 @@ public class BookDTO {
     private String publishedDate;
 
     // Số trang
-    @Positive(message = "Số trang phải lớn hơn 0")
+    @Positive(message = "So trang phai lon hon 0")
     private int pages;
 
     // Ngôn ngữ
@@ -41,7 +41,7 @@ public class BookDTO {
 
     // Giá
     @NotNull
-    @Positive(message = "Giá phải lớn hơn 0")
+    @Positive(message = "Gia phai lon hon 0")
     private Long price;
 
     // Mô tả
@@ -49,6 +49,6 @@ public class BookDTO {
 
     @JsonProperty("category_id")
     @NotNull
-    @Min(value = 1, message = "Id của category phải lớn hơn 0")
-    private Long categoryId; // Đổi tên biến cho phù hợp với quy ước
+    @Min(value = 1, message = "Id cua category phai lon hon 0")
+    private Long categoryId;
 }

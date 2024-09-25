@@ -4,8 +4,8 @@ import UserSlice from './UserSlice';
 import cartSlice from './cartSlice';
 import categoriesSlice from './categoriesSlice';
 import CateSclice from './CateSclice';
-import orderDetailSlice from './orderDetailSlice';
 import Order1Slice from './Order1Slice';
+import orderSlice from './orderSlice';
 
 const store=configureStore({
     reducer:{
@@ -14,7 +14,7 @@ const store=configureStore({
         cart: cartSlice,
         categories: categoriesSlice,
         category: CateSclice,
-        orderDetail: orderDetailSlice,
+        orders: orderSlice,
         order1:Order1Slice
     }
 })

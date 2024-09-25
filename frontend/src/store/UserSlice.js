@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:8080/api';
-
+// Lấy user từ local storage
+const user = JSON.parse(localStorage.getItem('user'));
 
 export const login= createAsyncThunk('user/login',async (userAdd,thunkAPI)=>{
     const url = BASE_URL+"/auth";
@@ -85,7 +86,7 @@ const UserSlice = createSlice({
   name: 'user',
   
   initialState: {  
-    user:null,
+    user: user ? user : null,
     error:null,
     listUser:null,
     listRestore:null,
@@ -101,6 +102,8 @@ const UserSlice = createSlice({
        .addCase(login.fulfilled,(state,action)=>{
             state.status=action.payload.status;
             state.message=action.payload.message;
+            console.log(action.payload.data);
+            
             state.user=action.payload.data;
             localStorage.setItem('user',JSON.stringify(action.payload.data));
 

@@ -8,8 +8,11 @@ import com.example.backend.models.Book;
 import com.example.backend.models.BookImage;
 import com.example.backend.responses.*;
 import com.example.backend.services.BookService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,6 +42,20 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @PostMapping("/bulk")
+    public ResponseEntity<?> addJsonBooks(@RequestBody String jsonData) {
+        try {
+            List<BookDTO> bookDTOList = objectMapper.readValue(jsonData, new TypeReference<>() {});
+            bookService.insertBooks(bookDTOList);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Books added successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error processing json data: " + e.getMessage());
+        }
+    }
 
     @GetMapping("/list")
     public ResponseEntity<ApiResponse> getAllBooksPaginated(@RequestParam(defaultValue = "0") int page,
@@ -234,5 +251,62 @@ public class BookController {
                 .data(bookImage).build();
 
         return ResponseEntity.ok(apiResponse);
+    }
+
+    @GetMapping("/countBooks")
+    public ResponseEntity<ApiResponse> countBooks() {
+        Long countOfBooks = bookService.countAllBook();
+        // kiểm tra nếu không có quyển sách nào
+        if (countOfBooks == 0) {
+            return ResponseEntity.ok(ApiResponse.builder()
+                    .data(countOfBooks)
+                    .message("Khong co quyen sach nao!")
+                    .status(HttpStatus.OK.value())
+                    .build());
+        }
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(countOfBooks)
+                .message("Count of book retrieved successfully!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
+    }
+
+    @GetMapping("/searchBooks")
+    public ResponseEntity<ApiResponse> searchBooksByName(@RequestParam String bookName){
+        List<Book> bookList = bookService.searchBooksByName(bookName);
+        if (bookList.isEmpty()) {
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .message("Khong co quyen sach nao voi ten: " + bookName)
+                    .status(HttpStatus.NOT_FOUND.value())
+                    .build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+        }
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(bookList)
+                .message("Da tim thay sach!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
+    }
+
+    @GetMapping("/searchBooks/category")
+    public ResponseEntity<ApiResponse> searchBooksByCategoryName(@RequestParam String categoryName){
+        List<Book> bookList = bookService.findBooksByCategoryName(categoryName);
+        if (bookList.isEmpty()) {
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .message("Khong co quyen sach nao voi category: " + categoryName)
+                    .status(HttpStatus.NOT_FOUND.value())
+                    .build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+        }
+
+        ApiResponse apiResponse = ApiResponse.builder()
+                .data(bookList)
+                .message("Da tim thay sach!")
+                .status(HttpStatus.OK.value())
+                .build();
+        return ResponseEntity.ok().body(apiResponse);
     }
 }

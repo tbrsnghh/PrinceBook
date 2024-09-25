@@ -54,7 +54,6 @@ public class Book extends BaseEntity {
     // Mô tả
     @Column(columnDefinition = "TEXT")
     private String description;
-
     // Khóa ngoại từ bảng Category
 //    @ManyToOne
 //    @JoinColumn(name = "category_id", nullable = false)

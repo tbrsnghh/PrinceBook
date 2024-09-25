@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartItems from "./CartItems";
-import { addItemToOrderDetail, updateAllItemsChecked } from "../../store/orderDetailSlice";
 import { calcTotalMoney, calcTotalQuantity, toggleAllItemsChecked, toggleChecked } from "../../store/cartSlice";
 import TamTinh from "./TamTinh";
 

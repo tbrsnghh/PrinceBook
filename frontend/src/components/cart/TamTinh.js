@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function TamTinh({totalMoney}) {
     const [discount, setDiscount] = useState(0);
@@ -43,9 +44,12 @@ export default function TamTinh({totalMoney}) {
           }).format(totalMoney)}
         </span>
       </div>
+      <Link to="/checkout">
       <button className="w-full bg-red-500 text-white py-2 rounded">
-        Mua Hàng (1)
+        Mua Hàng
       </button>
+      </Link>
+      
     </div>
   );
 }
