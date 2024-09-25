@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Items_order from "./Items_order";
 import UserInfo from "./UserInfo";
-import { postOrder, postOrderDetail } from "../../store/orderSlice";
+import { postOrder } from "../../store/orderSlice";
+
 import { removeItemFromCart } from "../../store/cartSlice";
+import { postOrderDetail } from "../../store/orderDetailSlice";
 
 export default function CheckoutComp() {
-  const { cart, user, orders } = useSelector((state) => state);
-  const { status, error, order_latest } = orders;
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const { status, error, order_latest, orders } = useSelector((state) => state.orders);
   const items_order = cart.cartItems.filter((item) => item.checked);
   const user_info = user.user;
 
@@ -27,9 +30,10 @@ export default function CheckoutComp() {
     shipping_date: "",
     payment_method: "",
   });
+
   const dispatch = useDispatch();
+
   useEffect(() => {
-    // Use functional state update to ensure the latest state is used
     setOrder((prevOrder) => ({
       ...prevOrder,
       note: note,
@@ -37,33 +41,37 @@ export default function CheckoutComp() {
       payment_method: paymentMethod,
     }));
   }, [note, shipping_address, paymentMethod]);
-  const handleThanhToan = () => {
-    dispatch(postOrder(order));
-    if (status === "succeeded") {
+  
+  const handleThanhToan = async () => {
+    try {
+      const resultAction = await dispatch(postOrder(order)).unwrap(); // Wait for the order to be posted
+
       alert("Đặt hàng thành công");
-      setNote("");
-      setShippingAddress("");
-      setPaymentMethod("cash");
+
       items_order.forEach((item) => {
         dispatch(
           postOrderDetail({
             price: item.price,
             count: item.quantity,
-            order_id: order_latest.id,
+            order_id: resultAction.id, // Use the returned order id
             book_id: item.id,
             total_price: item.total,
           })
         );
-        console.log("post", item.id);
-        // dispatch(removeItemFromCart(item.id));
+        console.log("Order detail posted", item.id);
+        dispatch(removeItemFromCart(item.id));
       });
+
+      // Clear form and redirect
       setTimeout(() => {
         window.location.href = "/cart";
       }, 100);
-    } else {
+    } catch (err) {
       alert("Đặt hàng thất bại");
+      console.error("Error placing order: ", err);
     }
   };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Checkout</h1>

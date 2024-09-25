@@ -15,9 +15,9 @@ export default function Categories2() {
       <p className="text-md font-bold mb-4">Danh mục</p>
       <div className="border-t border-gray-200">
         {categories.map((category, index) => (
-          <Link to={`/category/${category.id}`}>
+          <Link to={`/category/${category.id}`} key={index}>
             <div
-              key={index}
+              
               className="flex justify-between items-center py-2 border-b border-gray-100"
             >
               <button className="text-sm">{category.name}</button>
