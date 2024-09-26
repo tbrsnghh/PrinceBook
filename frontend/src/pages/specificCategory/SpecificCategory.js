@@ -5,12 +5,15 @@ import BooksList from "../../components/booksList/BooksList";
 
 import Categories2 from "../../components/categories/Categories2";
 import { useParams } from "react-router-dom";
+import { getBooksByCategory } from "../../store/booksSlice";
 
 export default function SpecificCategory() {
   const { booksByCategory, status, error } = useSelector((state) => state.books);
   const dispatch = useDispatch();
   const { categoryname } = useParams();
-
+  useEffect(() => {
+    dispatch(getBooksByCategory(categoryname));
+  }, [categoryname]);
   const renderHomeContent = () => {
     return (
       <div className="w-full my-4 flex">

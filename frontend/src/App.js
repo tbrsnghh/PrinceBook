@@ -21,13 +21,15 @@ import MyOrder from "./pages/order/MyOrder";
 import CheckoutOk from "./pages/checkoutOk/CheckoutOk";
 import Results from "./pages/result/Result";
 import ListProduct from "./pages/admin/product/ListProduct";
+import Home2 from "./pages/home/Home2";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route index element={<Home />}></Route>
+          {/* <Route index element={<Home />}></Route> */}
+          <Route index element={<Home2 />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/book/:id" element={<BookDetailPage />}></Route>
           <Route path="/category/:categoryname" element={<SpecificCategory />}></Route>
