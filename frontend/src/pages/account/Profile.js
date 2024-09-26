@@ -41,9 +41,6 @@ const test =()=>{
         fetchdata();
     },[])
 
-    console.log('====================================');
-    console.log(dataOrder);
-    console.log('====================================');
   return (
    <>
     <Container>
@@ -139,7 +136,7 @@ date_order
   <tbody>
 
     {
-        dataOrder.map((item,index)=>(
+     dataOrder &&   dataOrder.map((item,index)=>(
 
 <tr key={index}>
       <th scope="row">
