@@ -14,17 +14,18 @@ export default function Book({ book }) {
           alt={book.name}
           className="h-2/3 w-full object-cover" // Chiều cao ảnh bằng 2/3 ô
         />
-        <div className="flex flex-col p-3 flex-grow bg-white">
+        <div className="h-1/3 min-h-[120px] flex flex-col p-3 flex-grow bg-white">
           <div className="text-red-600 text-lg font-semibold">
             {book.price ? 
               new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(book.price) :
               "Đang cập nhật"
             }
           </div>
-          <div className="text-gray-700 text-lg font-semibold mb-2">
+          <div className="text-gray-700 text-md font-semibold mt-2">
             {book.name}
           </div>
-          <div className="flex items-center mb-2">
+          {/* Đanh giá */}
+          {/* <div className="flex items-center mb-2">
             <div className="text-yellow-500 ">
               <i className="fas fa-star text-sm"></i>
               <i className="fas fa-star text-sm"></i>
@@ -36,7 +37,7 @@ export default function Book({ book }) {
           </div>
           <div className="text-blue-600 text-sm">
             <i className="fas fa-tags"></i> Giảm 15K
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

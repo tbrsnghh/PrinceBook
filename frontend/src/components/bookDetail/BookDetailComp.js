@@ -101,7 +101,7 @@ function BookDetailComp() {
             </div>
           </div>
 
-          <div className="w-full md:w-3/12 pl-4">
+          <div className="w-full md:w-3/12 p-4 ">
             <Buying book={book} />
           </div>
           {/* Nguyên một cột cho vô giỏ hàng */}

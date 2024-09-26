@@ -3,17 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import Items_order from "./Items_order";
 import UserInfo from "./UserInfo";
 import { postOrder } from "../../store/orderSlice";
-
 import { removeItemFromCart } from "../../store/cartSlice";
 import { postOrderDetail } from "../../store/orderDetailSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function CheckoutComp() {
+const CheckoutComp = () => {
+  const location = useLocation();  
+  const order_now = location.state?.order; 
+
+  const dispatch = useDispatch(); const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
-  const { status, error, order_latest, orders } = useSelector((state) => state.orders);
-  const items_order = cart.cartItems.filter((item) => item.checked);
+  
+  
+  const items_order = order_now ? [order_now ] : cart.cartItems.filter((item) => item.checked);
+  const total_Price = order_now ? order_now.total : cart.totalMoney;
   const user_info = user.user;
-
+  console.log(items_order);
   const [note, setNote] = useState("");
   const [shipping_address, setShippingAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -24,14 +30,12 @@ export default function CheckoutComp() {
     note: "",
     username: user_info.username,
     phone_number: user_info.phone,
-    total_Price: cart.totalMoney,
+    total_Price: total_Price,
     shipping_method: "",
     shipping_address: "",
     shipping_date: "",
     payment_method: "",
   });
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setOrder((prevOrder) => ({
@@ -41,35 +45,28 @@ export default function CheckoutComp() {
       payment_method: paymentMethod,
     }));
   }, [note, shipping_address, paymentMethod]);
-  
   const handleThanhToan = async () => {
-    try {
-      const resultAction = await dispatch(postOrder(order)).unwrap(); // Wait for the order to be posted
-
-      alert("Đặt hàng thành công");
-
-      items_order.forEach((item) => {
-        dispatch(
-          postOrderDetail({
-            price: item.price,
-            count: item.quantity,
-            order_id: resultAction.id, // Use the returned order id
-            book_id: item.id,
-            total_price: item.total,
-          })
-        );
-        console.log("Order detail posted", item.id);
-        dispatch(removeItemFromCart(item.id));
-      });
-
-      // Clear form and redirect
-      setTimeout(() => {
-        window.location.href = "/cart";
-      }, 100);
-    } catch (err) {
-      alert("Đặt hàng thất bại");
-      console.error("Error placing order: ", err);
+    const resultAction = await dispatch(postOrder(order)).unwrap();
+    if (resultAction.error) {
+      console.log(resultAction.error);
+      return;
     }
+  
+    items_order.forEach((item) => {
+      dispatch(
+        postOrderDetail({
+          price: item.price,
+          count: item.quantity,
+          order_id: resultAction.data.id,
+          book_id: item.id,
+          total_price: item.total,
+        })
+      );
+      dispatch(removeItemFromCart(item.id));
+    });
+    setTimeout(() => {
+      navigate("/ok");
+    }, 1000);
   };
 
   return (
@@ -94,4 +91,7 @@ export default function CheckoutComp() {
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutComp;
+

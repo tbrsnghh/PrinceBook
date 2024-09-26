@@ -13,13 +13,13 @@ const initialState = {
 // Async thunk to post order details via API
 export const postOrderDetail = createAsyncThunk(
   "orderDetail/postOrderDetail",
-  async (orderDetail, thunkAPI) => {
+  async (orderDetail) => {
     const url = `${BASE_URL}/orderDetail`;
     try {
       const response = await axios.post(url, orderDetail);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return error.response.data;
     }
   }
 );
@@ -37,7 +37,6 @@ const orderDetailSlice = createSlice({
       .addCase(postOrderDetail.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.orderDetails.push(action.payload);
-
       })
       .addCase(postOrderDetail.rejected, (state, action) => {
         state.status = "failed";
@@ -48,3 +47,4 @@ const orderDetailSlice = createSlice({
 
 // Export the reducer
 export default orderDetailSlice.reducer;
+
