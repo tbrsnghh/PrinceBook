@@ -7,6 +7,7 @@ import { getBooks } from "../../store/booksSlice";
 import Categories2 from "../../components/categories/Categories2";
 import "./home.scss";
 
+
 export default function Home() {
   const { books, status, error } = useSelector((state) => state.books);
   const dispatch = useDispatch();

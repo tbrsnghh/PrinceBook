@@ -25,7 +25,7 @@ export default function Header() {
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="/admin" class="nav-link">Home</a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -50,7 +50,7 @@ export default function Header() {
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
               <i class="far fa-comments"></i>
-              <span class="badge badge-danger navbar-badge">3</span>
+            
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <a href="#" class="dropdown-item">
@@ -108,7 +108,7 @@ export default function Header() {
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
               <i class="far fa-bell"></i>
-              <span class="badge badge-warning navbar-badge">15</span>
+           
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
               <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -137,7 +137,7 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <aside class="main-sidebar sidebar-dark-primary elevation-4 hieght-auto">
+      <aside class="main-sidebar  opacity-90  hieght-auto p-2  ">
         <div class="sidebar">
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
@@ -155,7 +155,7 @@ export default function Header() {
                   <p>
                 Category
                     <i class="fas fa-angle-left right"></i>
-                    <span class="badge badge-info right">6</span>
+
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -205,7 +205,7 @@ export default function Header() {
                 </ul>
               </li>
               <li className={`nav-item has-treeview ${openMenu === 3 ? 'menu-open' : ''}`}>
-                <Link to={'/admin/product'} class="nav-link" onClick={() => toggleMenu(3)}>
+                <Link  class="nav-link" onClick={() => toggleMenu(3)}>
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
                 Product
@@ -214,10 +214,10 @@ export default function Header() {
                 </Link>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/forms/advanced.html" class="nav-link">
+                    <Link to={"/admin/product"} class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>List product</p>
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item">
                     <a href="pages/forms/editors.html" class="nav-link">

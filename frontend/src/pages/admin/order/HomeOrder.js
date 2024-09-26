@@ -27,7 +27,27 @@ const formatDate = (dateString) => {
 };
  
 
+const headers = [
 
+    { label: 'id_Order', key: 'id_Order' }, 
+    { label: 'username', key: 'username' },
+    { label: 'phone', key: 'phone' },
+    { label: 'address', key: 'address' },
+    { label: 'total_amount', key: 'total_amount' },
+    { label: 'status', key: 'status' },
+    { label: 'date_order', key: 'date_order' },
+
+];
+const csvData = ListOrders.map((item) => ({
+  id_Order: item.id_Order,
+  username: item.username,
+  phone: item.phone,
+  address: item.address,
+  total_amount: item.totalPrice,
+  status: item.status,
+  date_order: item.createdAt,
+  
+}));
 
   return (
    <>
@@ -43,6 +63,10 @@ const formatDate = (dateString) => {
                 <div class="card card-primary mx-3">
                     <div class="card-header">
                         <h3 class="card-title">List order</h3>
+                        <CSVLink
+                        data={csvData} headers={headers}  className='btn btn-success float-right'>
+                          excel
+                        </CSVLink>
                     </div>
                     <Table
        
@@ -71,7 +95,7 @@ const formatDate = (dateString) => {
                                 </th>
                               
                                 <th>
-                                    action
+                                   date_order
                                 </th>
                             </tr>
                         </thead>

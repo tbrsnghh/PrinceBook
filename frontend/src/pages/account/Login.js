@@ -46,11 +46,11 @@ export default function Login() {
           <div className="bg-white p-8 rounded-lg shadow-lg w-80">
             <h2 className="text-2xl font-bold text-center mb-4">Login Form</h2>
             <form>
-              <input type="text" placeholder="User name" className="w-full mb-4 p-2 border rounded-full"
+              <input type="text" placeholder="User name" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
                 onChange={handle_change}
                 value={userAdd.username}
                 name='username' />
-              <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded-full"
+              <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
                 onChange={handle_change}
                 value={userAdd.password}
                 name='password' />

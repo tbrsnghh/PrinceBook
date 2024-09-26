@@ -20,6 +20,7 @@ import Checkout from "./pages/checkout/Checkout";
 import MyOrder from "./pages/order/MyOrder";
 import CheckoutOk from "./pages/checkoutOk/CheckoutOk";
 import Results from "./pages/result/Result";
+import ListProduct from "./pages/admin/product/ListProduct";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/admin/user/restore" element={  <ProtectedRoute> {" "}  <UserRestoreHome />{" "}  </ProtectedRoute>  }  ></Route>
           <Route path="/admin/order"  element={  <ProtectedRoute>  {" "}  <HomeOrder />{" "}  </ProtectedRoute>  } ></Route>
           <Route path="/admin/order/:id"  element={  <ProtectedRoute>  {" "}  <OrderDetail />{" "}  </ProtectedRoute>  } ></Route>
+          <Route path="/admin/product"  element={  <ProtectedRoute>  {" "}  <ListProduct />{" "}  </ProtectedRoute>  } ></Route>
           {/* bao ve route admin */}
         </Routes>
       </Router>

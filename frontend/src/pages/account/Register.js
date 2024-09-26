@@ -15,7 +15,7 @@ const handle_change = (e) => {
   setUserRes({ ...userRes, [name]: value });
 };
 const handle_signup = () => {
-    console.log(userRes);
+ 
     
   dispatch(register(userRes));
 }
@@ -37,28 +37,28 @@ useEffect(() => {
    <div className="bg-white p-8 rounded-lg shadow-lg w-80">
             <h2 className="text-2xl font-bold text-center mb-4">Signup Form</h2>
             <form>
-              <input type="text" placeholder="ten dang nhap" className="w-full mb-4 p-2 border rounded-full"
+              <input type="text" placeholder="ten dang nhap" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
               name='username'
               value={userRes.username}
               onChange={handle_change}
               />
-              <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded-full"
+              <input type="password" placeholder="Password" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
               name='password'
                 value={userRes.password}
                 onChange={handle_change}
               />
-              <input type="text" placeholder="Email Address" className="w-full mb-4 p-2 border rounded-full"
+              <input type="text" placeholder="Email Address" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
               name='gmail'
                 value={userRes.gmail}
                 onChange={handle_change}
 
               />
-              <input type="text" placeholder="phone" className="w-full mb-4 p-2 border rounded-full"
+              <input type="text" placeholder="phone" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
               name='phone'
                 value={userRes.phone}
                 onChange={handle_change}
               />
-                <Input type="date" placeholder="data" className="w-full mb-4 p-2 border rounded-full"
+                <Input type="date" placeholder="data" className="w-full mb-4 p-2 border rounded-full bg-gray-100"
               name='ngay_sinh'
                 value={userRes.ngay_sinh}
                 onChange={handle_change}
