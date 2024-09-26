@@ -15,15 +15,15 @@ function BookDetailComp() {
   const book = useSelector((state) => state.books.a_book);
   const {images} = useSelector((state) => state.books);
   const dispatch = useDispatch();
-  
+  const [imagePath, setImagePath] = useState("");
 
   useEffect(() => {  
     // dispatch(resetImages());
     dispatch(getBookDetail(id));
     dispatch(getAllImagesByBookId(id));
-    
-  }, [id]);    
-
+    setImagePath( images.length > 0 ? `http://localhost:8080/api/book/images/${images[0].imagePath}` : "");
+  }, [dispatch, id]);    
+  
   return (
     <div className="w-full max-w-7xl py-2 mx-auto">
       {book ? (
@@ -89,7 +89,7 @@ function BookDetailComp() {
           </div>
 
           <div className="w-full md:w-3/12 p-4 ">
-            <Buying book={book} />
+            <Buying book={book} imagePath={imagePath}/>
           </div>
           {/* Nguyên một cột cho vô giỏ hàng */}
         </div>

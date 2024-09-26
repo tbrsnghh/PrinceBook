@@ -186,7 +186,6 @@ const booksSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(getBookLimitItems.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.books = action.payload.data.bookResponses;
         state.totalPages = action.payload.data.totalPages; // Lưu số trang từ API
         state.status = "succeeded";
