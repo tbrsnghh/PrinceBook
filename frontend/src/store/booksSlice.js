@@ -46,6 +46,27 @@ export const getBooksByCategory=createAsyncThunk('books/getBooksByCategory',asyn
       return thunkAPI.rejectWithValue(error.response.data); // Trả về lỗi nếu có
   }
 })
+
+// Get Images
+// Get all images by book id
+export const getAllImagesByBookId = createAsyncThunk('books/getAllImagesByBookId', async (id, thunkAPI) => {
+    const url = BASE_URL + `/book/getAllImage/${id}`;
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data); // Trả về lỗi nếu có
+    }
+  });
+export const getImages = createAsyncThunk('books/getImages', async (imgname, thunkAPI) => {
+    const url = BASE_URL + `/book/images//${imgname}`;
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data); // Trả về lỗi nếu có
+    }
+})
 // Config Books Store
 const booksSlice = createSlice({
   name: 'books',  
@@ -57,9 +78,11 @@ const booksSlice = createSlice({
     searchBooks: null, 
     booksByCategory: null, 
     totalPages: 0,  
+    images: null,
     message: "",  
   },  
     reducers:{
+
       
     },
     extraReducers:(builder)=>{
@@ -114,6 +137,19 @@ const booksSlice = createSlice({
         .addCase(getBooksByCategory.rejected,(state,action)=>{
             state.status='failed';
             state.booksByCategory=null;
+            state.error=action.payload;
+        })
+        .addCase(getAllImagesByBookId.pending,(state,action)=>{
+            state.status='loading';
+        })
+        .addCase(getAllImagesByBookId.fulfilled,(state,action)=>{
+            state.images=action.payload.data;
+            state.message=action.payload.message;
+            state.status=action.payload.status;
+        })
+        .addCase(getAllImagesByBookId.rejected,(state,action)=>{
+            state.status='failed';
+            state.images=null;
             state.error=action.payload;
         })  
     }

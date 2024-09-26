@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./book.scss";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { getAllImagesByBookId } from "../../store/booksSlice";
 
 export default function Book({ book }) {
+  const [images, setImages] = useState([]);
+  
+  
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const result = await dispatch(getAllImagesByBookId(book.id)).unwrap();
+        result.data && result.data.length > 0 && console.log(result.data[0].imagePath);
+        setImages(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchImages();
+  }, [dispatch, book.id]);
+  // const firstImage = images && images[0]?.imagePath;
+  
+  
+  
   return (
     <Link to={`/book/${book.id}`}>
       <div
@@ -10,7 +33,7 @@ export default function Book({ book }) {
     transition-transform transform hover:scale-105"
       >
         <img
-          src="https://www.nxbtre.com.vn/Images/Book/NXBTreStoryFull_02482010_104821.jpg"
+          src={images.data && images.data.length > 0 && `http://localhost:8080/api/book/images/${images.data[0].imagePath}`}
           alt={book.name}
           className="h-2/3 w-full object-cover" // Chiều cao ảnh bằng 2/3 ô
         />
