@@ -6,7 +6,7 @@ export default function CartItems({ item, onToggleItem }) {
   const { name, price, quantity, checked } = item;
   const [quant, setQuant] = useState(quantity);
   const dispatch = useDispatch();
-  console.log(item);
+
   
   useEffect(() => {
     dispatch(
