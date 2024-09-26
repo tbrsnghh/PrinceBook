@@ -82,7 +82,9 @@ const booksSlice = createSlice({
     message: "",  
   },  
     reducers:{
-
+        resetImages(state) {
+            state.images = null;  // Xóa hình ảnh khi cuốn sách thay đổi
+          },
       
     },
     extraReducers:(builder)=>{
@@ -154,5 +156,5 @@ const booksSlice = createSlice({
         })  
     }
 })
-export const {  } = booksSlice.actions;
+export const { resetImages } = booksSlice.actions;
 export default booksSlice.reducer

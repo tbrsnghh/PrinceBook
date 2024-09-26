@@ -9,6 +9,7 @@ export default function Book({ book }) {
   const dispatch = useDispatch();  
 
   useEffect(() => {  
+
     const fetchImages = async () => {  
       try {  
         const result = await dispatch(getAllImagesByBookId(book.id)).unwrap();  

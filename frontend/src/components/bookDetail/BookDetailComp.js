@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBookDetail } from "../../store/booksSlice";
+import { getAllImagesByBookId, getBookDetail } from "../../store/booksSlice";
 import "./bookDetail.scss";
 import ImageSlider from "./ImageSlider";
 import Offers from "./Offers";
@@ -13,12 +13,23 @@ import DetailInfo from "./DetailInfo";
 function BookDetailComp() {
   const { id } = useParams();
   const book = useSelector((state) => state.books.a_book);
-
+  const {images} = useSelector((state) => state.books);
   const dispatch = useDispatch();
+  
+  // const [images, setImages] = useState([]);  
+  console.log(images);
+  
 
-  useEffect(() => {
+  useEffect(() => {  
+    
+    dispatch(getAllImagesByBookId(id));
     dispatch(getBookDetail(id));
-  }, []);
+  }, [dispatch,id]);  
+
+  // useEffect(() => {
+  //   dispatch(getBookDetail(id));
+      
+  // }, []);
   const cover_list = [
     {
       url: "https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg",
@@ -45,7 +56,7 @@ function BookDetailComp() {
           <div className="w-full md:w-4/12">
             <div className="mt-4 ">
               {/* map image click vô hiển thị */}
-              <ImageSlider cover_list={cover_list} />
+              <ImageSlider cover_list={images} />
             </div>
           </div>
           {/* 2/3 bên phải */}

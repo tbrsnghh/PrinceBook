@@ -14,13 +14,15 @@ export default function ImageSlider({ cover_list }) {
     autoplay: false,
     autoplaySpeed: 3000,
     arrows: true,
-    beforeChange: (current, next) => setCoverMain(cover_list[next].url),
+    beforeChange: (current, next) => setCoverMain(cover_list[next].imagePath),
   };
-  const [cover_main, setCoverMain] = useState(cover_list[0].url);
+  const [cover_main, setCoverMain] = useState(cover_list[0].imagePath);
   return (
     <>
       <img
-              src={cover_main}
+              // src={cover_main}
+              src={cover_main && `http://localhost:8080/api/book/images/${cover_main}`}  
+
               // className="w-48 h-auto z-10 mx-auto"
               className="w-80 h-96 mx-auto object-cover"
             />
