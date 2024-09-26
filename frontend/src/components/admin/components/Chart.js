@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { CChart } from '@coreui/react-chartjs';
+import axios from 'axios';
 
 export default function Chart() {
+
+  
+  const [sumOrders, setSumOrders] = useState();
+  const [countOrders, setCountOrders] = useState();
+const sumOrder = async () => {
+  const url = "http://localhost:8080/api/order/sumOrders";
+  try {
+    const response = await axios.get(url);
+    setSumOrders(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const countOrder = async () => {
+  const url = "http://localhost:8080/api/order/countOrders";
+  try {
+    const response = await axios.get(url);
+    setCountOrders(response.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+useEffect(() => {
+  sumOrder();
+  countOrder();
+},[])
   return (
     <>
       <div class="content-wrapper">
@@ -25,11 +52,11 @@ export default function Chart() {
                   type="doughnut"
 
                   data={{
-                    labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                    labels: ['User', 'Product', 'Order'],
                     datasets: [
                       {
-                        backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                        data: [40, 20, 80, 10],
+                        backgroundColor: ['yellow', '#E46651', '#00D8FF', '#DD1B16'],
+                        data: [10, 20,  countOrders],
                       },
                     ],
                   }}

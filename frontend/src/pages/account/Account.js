@@ -8,25 +8,13 @@ export default function Account() {
   return (
     <>
         <Header/>
-        
-
-
 {
   (localStorage.getItem('user')) 
-
-
   ?
-
-
 <Profile/>
-  
   :
-
   <Login/>
-}
-        
-
-        
+}     
     </>
   )
 }

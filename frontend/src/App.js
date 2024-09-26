@@ -16,6 +16,7 @@ import SpecificCategory from "./pages/specificCategory/SpecificCategory";
 import UserRestoreHome from "./pages/admin/user/UserRestoreHome";
 import HomeOrder from "./pages/admin/order/HomeOrder";
 import OrderDetail from "./pages/admin/order/OrderDetail";
+import ListProduct from "./pages/admin/product/ListProduct";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/admin/user/restore" element={  <ProtectedRoute> {" "}  <UserRestoreHome />{" "}  </ProtectedRoute>  }  ></Route>
           <Route path="/admin/order"  element={  <ProtectedRoute>  {" "}  <HomeOrder />{" "}  </ProtectedRoute>  } ></Route>
           <Route path="/admin/order/:id"  element={  <ProtectedRoute>  {" "}  <OrderDetail />{" "}  </ProtectedRoute>  } ></Route>
+          <Route path="/admin/product"  element={  <ProtectedRoute>  {" "}  <ListProduct />{" "}  </ProtectedRoute>  } ></Route>
           {/* bao ve route admin */}
         </Routes>
       </Router>
