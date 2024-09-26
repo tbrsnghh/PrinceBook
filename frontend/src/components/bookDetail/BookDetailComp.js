@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllImagesByBookId, getBookDetail } from "../../store/booksSlice";
+import { getAllImagesByBookId, getBookDetail, resetImages } from "../../store/booksSlice";
 import "./bookDetail.scss";
 import ImageSlider from "./ImageSlider";
 import Offers from "./Offers";
@@ -16,37 +16,13 @@ function BookDetailComp() {
   const {images} = useSelector((state) => state.books);
   const dispatch = useDispatch();
   
-  // const [images, setImages] = useState([]);  
-  console.log(images);
-  
 
   useEffect(() => {  
-    
-    dispatch(getAllImagesByBookId(id));
+    // dispatch(resetImages());
     dispatch(getBookDetail(id));
-  }, [dispatch,id]);  
-
-  // useEffect(() => {
-  //   dispatch(getBookDetail(id));
-      
-  // }, []);
-  const cover_list = [
-    {
-      url: "https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg",
-    },
-    {
-      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_12-390x510.jpg",
-    },
-    {
-      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_2-390x510.jpg",
-    },
-    {
-      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_3-390x510.jpg",
-    },
-    {
-      url: "https://cdn0.fahasa.com/media/flashmagazine/images/page_images/cay_cam_ngot_cua_toi/2020_12_17_16_50_30_4-390x510.jpg",
-    },
-  ];
+    dispatch(getAllImagesByBookId(id));
+    
+  }, [id]);    
 
   return (
     <div className="w-full max-w-7xl py-2 mx-auto">

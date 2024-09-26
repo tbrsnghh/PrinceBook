@@ -12,7 +12,6 @@ export default function Categories2() {
   }, []);
   const navigate = useNavigate();
   const toCategory = (category) => {
-    dispatch(getBooksByCategory(category));
     navigate(`/category/${category}`);
   }
 
