@@ -14,7 +14,7 @@ const DefaultLayout = ({ children }) => {
         <main>{children}</main> {/* Render nội dung con */}
       </div>
 
-      <OurStory/>
+      {/* <OurStory/> */}
       <Footer />
     </>
   );

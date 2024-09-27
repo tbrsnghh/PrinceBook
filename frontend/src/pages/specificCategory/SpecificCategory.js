@@ -11,6 +11,7 @@ export default function SpecificCategory() {
   const { booksByCategory, status, error } = useSelector((state) => state.books);
   const dispatch = useDispatch();
   const { categoryname } = useParams();
+  
   useEffect(() => {
     dispatch(getBooksByCategory(categoryname));
   }, [categoryname]);
