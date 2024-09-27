@@ -3,7 +3,7 @@ import Offers from "./Offers";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
-export default function Buying({ book }) {
+export default function Buying({ book, imagePath}) {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ export default function Buying({ book }) {
       price: book.price,
       quantity: quantity,
       checked: false,
+      imagePath: imagePath 
     };
     dispatch(addItemToCart(item));
   };
@@ -24,6 +25,7 @@ export default function Buying({ book }) {
       price: book.price,
       quantity: quantity,
       total: quantity * book.price,
+      imagePath: imagePath 
     };
 
     navigate("/checkout", { state: { order } }); // Sử dụng state để gửi đơn hàng

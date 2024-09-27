@@ -7,6 +7,7 @@ export default function CartItems({ item, onToggleItem }) {
   const [quant, setQuant] = useState(quantity);
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     dispatch(
       updateItemQuantity({
@@ -39,7 +40,7 @@ export default function CartItems({ item, onToggleItem }) {
       </div>
       <div className="basis-1/12 pr-2">
         <img
-          src={item.img}
+          src={item.imagePath}
           alt={item.title}
           className="w-full h-20 object-cover"
         />
