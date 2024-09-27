@@ -8,8 +8,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import store from "./store/store.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-
 // Khởi tạo AOS
 AOS.init({
   duration: 500, // thời gian animation

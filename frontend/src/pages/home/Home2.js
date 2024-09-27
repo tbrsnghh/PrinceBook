@@ -11,14 +11,13 @@ import Pagination from "../../components/booksList/Pagination";
 import SpecificCategory from "../specificCategory/SpecificCategory";
 import SpecificCategory2 from "../specificCategory/SpecificCategory2";
 
-
 export default function Home2() {
   const { books, status, totalPages, limit } = useSelector(
     (state) => state.books
   );  
   const dispatch = useDispatch();
   const [currentPage, setPage] = useState(0);
-  // Gọi API để lấy danh sách sách
+
   useEffect(() => {
     // dispatch(getBooks());
     dispatch(getBookLimitItems({ page: currentPage, size: limit }));
@@ -40,9 +39,11 @@ export default function Home2() {
           {books ? (
             // <BooksList booksList={books} />
             <BooksList booksList={books} />
+            
           ) : (
             <p>Loading books...</p>
           )}{" "}
+          {window.scrollTo(0, 0)}
           <Pagination currentPage={currentPage} totalPages={totalPages}
           onPageChange={onPageChange}/>
         </div>

@@ -9,7 +9,6 @@ import Offers from "./Offers";
 import ShippingInfo from "./ShippingInfo"; 
 import Buying from "./Buying";
 import DetailInfo from "./DetailInfo";
-
 function BookDetailComp() {
   const { id } = useParams();
   const book = useSelector((state) => state.books.a_book);
@@ -22,7 +21,7 @@ function BookDetailComp() {
     dispatch(getBookDetail(id));
     dispatch(getAllImagesByBookId(id));
     setImagePath( images.length > 0 ? `http://localhost:8080/api/book/images/${images[0].imagePath}` : "");
-
+    window.scrollTo(0, 0);
   }, [id]);    
 
   return (
