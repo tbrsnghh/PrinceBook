@@ -1,15 +1,23 @@
 import React from "react";
 import PromotionCard from "./PromotionCard";
 import IconCard from "./IconCard";
+import 'transition-style';
 const BannerMini = ({ src, alt }) => (
   <div className="flex-1">
     <img src={src} alt={alt} className="w-full rounded-lg" />
   </div>
 );
 
+
 const Banner = () => {
   return (
-    <div className="justify-center flex p-2">
+    <div className="justify-center flex p-2"
+    // data-aos="fade-up"  
+    // data-aos-anchor-placement="top-bottom" 
+    // data-aos-easing="ease-in-out" 
+    // data-aos-duration="1500" 
+    // data-aos-delay="1500"  // Thêm delay động
+      >
     <div className="w-full max-w-7xl">
       {/* <div className="flex space-x-4">
         <BannerMini
@@ -22,7 +30,9 @@ const Banner = () => {
         />
       </div> */}
       {/* {Banner prince book} */}
-      <div className="flex space-x-4">
+      <div className="flex space-x-4" 
+        // transition-style="in:wipe:down" 
+      >
         <BannerMini
           src={require("../../asset/img/banner1.png")}
           alt="Promotion banner for VNPay"

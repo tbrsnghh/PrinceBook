@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getAllImagesByBookId } from "../../store/booksSlice";  
 import "./book.scss";  
 
-export default function Book({ book }) {  
+export default function Book({ book, index }) {  
   const [images, setImages] = useState([]);  
   const dispatch = useDispatch();  
 
@@ -22,10 +22,17 @@ export default function Book({ book }) {
     };  
     fetchImages();  
   }, [dispatch, book.id]);  
-
+  const delay = index * 100;
   return (  
     <Link to={`/book/${book.id}`}>  
-      <div className="flex flex-col justify-between rounded-lg shadow-md overflow-hidden w-full max-w-xs transition-transform transform hover:scale-105">  
+      <div 
+          data-aos="fade-up"  
+          data-aos-anchor-placement="top-bottom" 
+          data-aos-easing="ease-in-out" 
+          data-aos-duration="1000" 
+          data-aos-delay={delay}  // Thêm delay động
+          className="flex flex-col justify-between rounded-lg shadow-md 
+      overflow-hidden w-full max-w-xs transition-transform transform hover:scale-105">  
         <img  
           src={images.data && images.data.length > 0 && `http://localhost:8080/api/book/images/${images.data[0].imagePath}`}  
           alt={book.name}  

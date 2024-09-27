@@ -8,6 +8,8 @@ import Categories2 from "../../components/categories/Categories2";
 import "./home.scss";
 import BooksList2 from "../../components/booksList/BooksList copy";
 import Pagination from "../../components/booksList/Pagination";
+import SpecificCategory from "../specificCategory/SpecificCategory";
+import SpecificCategory2 from "../specificCategory/SpecificCategory2";
 
 
 export default function Home2() {
@@ -47,6 +49,9 @@ export default function Home2() {
         </div>
         
         <Banner />
+        <SpecificCategory2 categoryname="Khoa học" />
+        
+        {/* <SpecificCategory2 categoryname="Viễn tưởng" /> */}
       </div>
       
     );
