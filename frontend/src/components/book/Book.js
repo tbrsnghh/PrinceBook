@@ -22,34 +22,64 @@ export default function Book({ book, index }) {
     };  
     fetchImages();  
   }, [dispatch, book.id]);  
-  const delay = index * 100;
+  const delay = index * 200;
   return (  
-    <Link to={`/book/${book.id}`}>  
-      <div 
-          data-aos="fade-up"  
-          data-aos-anchor-placement="top-bottom" 
-          data-aos-easing="ease-in-out" 
-          data-aos-duration="1000" 
-          data-aos-delay={delay}  // Thêm delay động
-          className="flex flex-col justify-between rounded-lg shadow-md 
-      overflow-hidden w-full max-w-xs transition-transform transform hover:scale-105">  
-        <img  
-          src={images.data && images.data.length > 0 && `http://localhost:8080/api/book/images/${images.data[0].imagePath}`}  
-          alt={book.name}  
-          className="h-72 w-full object-cover" // Set a fixed height  
-        />  
-        <div className="h-1/3 min-h-[120px] flex flex-col p-3 flex-grow bg-white">  
-          <div className="text-red-600 text-lg font-semibold">  
-            {book.price ?   
-              new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(book.price) :  
-              "Đang cập nhật"  
-            }  
-          </div>  
-          <div className="text-gray-700 text-md font-semibold mt-2">  
-            {book.name}  
-          </div>  
-        </div>  
+    // <Link to={`/book/${book.id}`}>  
+    //   <div 
+    //       // data-aos="fade-up"  
+    //       // data-aos-anchor-placement="top-bottom" 
+    //       // data-aos-easing="ease-in-out" 
+    //       // data-aos-duration="1000" 
+    //       // data-aos-delay={delay}  // Thêm delay động
+    //       className="flex flex-col justify-between rounded-lg shadow-md 
+    //   overflow-hidden w-full max-w-xs transition-transform transform hover:scale-105"
+          
+      
+    //   >  
+      
+    //     <img  
+    //       src={images.data && images.data.length > 0 && `http://localhost:8080/api/book/images/${images.data[0].imagePath}`}  
+    //       alt={book.name}  
+    //       className="h-72 w-full object-cover" // Set a fixed height  
+    //     />  
+    //     <div className="h-1/3 min-h-[120px] flex flex-col p-3 flex-grow bg-white">  
+    //       <div className="text-red-600 text-lg font-semibold">  
+    //         {book.price ?   
+    //           new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(book.price) :  
+    //           "Đang cập nhật"  
+    //         }  
+    //       </div>  
+    //       <div className="text-gray-700 text-md font-semibold mt-2">  
+    //         {book.name}  
+    //       </div>  
+    //     </div>  
+    //   </div>  
+    // </Link>  
+    <Link to={`/book/${book.id}`}>
+  <div 
+    className="flex flex-col justify-between rounded-lg shadow-md overflow-hidden w-full 
+    max-w-xs transition-transform transform hover:scale-105
+    "
+    style={{ animationDelay: `${delay}ms` }} // Add dynamic delay
+  >  
+    <img  
+      src={images.data && images.data.length > 0 && `http://localhost:8080/api/book/images/${images.data[0].imagePath}`}  
+      alt={book.name}  
+      className="h-72 w-full object-cover"  
+    />  
+    <div className="h-1/3 min-h-[120px] flex flex-col p-3 flex-grow bg-white">  
+      <div className="text-red-600 text-lg font-semibold">  
+        {book.price ?   
+          new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(book.price) :  
+          "Đang cập nhật"  
+        }  
       </div>  
-    </Link>  
+      <div className="text-gray-700 text-md font-semibold mt-2">  
+        {book.name}  
+      </div>  
+    </div>  
+  </div>  
+</Link>
+
   );  
 }
