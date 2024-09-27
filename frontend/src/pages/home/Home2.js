@@ -47,8 +47,8 @@ export default function Home2() {
           onPageChange={onPageChange}/>
         </div>
         </div>
-        
-        <Banner />
+
+        <Banner/>
         <SpecificCategory2 categoryname="Khoa học" />
         
         {/* <SpecificCategory2 categoryname="Viễn tưởng" /> */}
