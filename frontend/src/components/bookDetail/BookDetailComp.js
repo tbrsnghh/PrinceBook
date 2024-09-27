@@ -23,7 +23,7 @@ function BookDetailComp() {
     dispatch(getAllImagesByBookId(id));
     setImagePath( images.length > 0 ? `http://localhost:8080/api/book/images/${images[0].imagePath}` : "");
 
-  }, [dispatch, id, images]);    
+  }, [id]);    
 
   return (
     <div className="w-full max-w-7xl py-2 mx-auto">
