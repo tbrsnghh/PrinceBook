@@ -28,12 +28,13 @@ export default function Home2() {
   }
   const renderHomeContent = () => {
     return (
-      <div className="w-full my-4 flex">
+      <div className="w-full my-4">
+        <div className="flex">
         <div className="w-1/5">
           <Categories2 />
         </div>
         <div className="w-4/5 hide-scrollbar">
-          {/* <Banner /> */}
+          
           {books ? (
             // <BooksList booksList={books} />
             <BooksList booksList={books} />
@@ -43,8 +44,11 @@ export default function Home2() {
           <Pagination currentPage={currentPage} totalPages={totalPages}
           onPageChange={onPageChange}/>
         </div>
+        </div>
         
+        <Banner />
       </div>
+      
     );
   };
 

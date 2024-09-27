@@ -9,9 +9,9 @@ const BannerMini = ({ src, alt }) => (
 
 const Banner = () => {
   return (
-    <div className="justify-center flex">
+    <div className="justify-center flex p-2">
     <div className="w-full max-w-7xl">
-      <div className="flex space-x-4">
+      {/* <div className="flex space-x-4">
         <BannerMini
           src="https://cdn0.fahasa.com/media/magentothem/banner7/TrangChuongTrinhThang9__HeroBanner_TrungThu_SlideBanner_840x320_2.jpg"
           alt="Hot Wheels banner with cars"
@@ -20,14 +20,15 @@ const Banner = () => {
           src="https://cdn0.fahasa.com/media/wysiwyg/Thang-09-2024/Resize_TrangDoiTacThang09_SubBanner_392x156.jpg"
           alt="Promotion banner for September"
         />
-      </div>
-      <div className="flex space-x-4 mt-4">
+      </div> */}
+      {/* {Banner prince book} */}
+      <div className="flex space-x-4">
         <BannerMini
-          src="https://cdn0.fahasa.com/media/magentothem/banner7/Trangbopviet_0924_840X320.jpg"
+          src={require("../../asset/img/banner1.png")}
           alt="Promotion banner for VNPay"
         />
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      {/* <div className="grid grid-cols-3 gap-4 mt-4">
         <PromotionCard
           bgColor="bg-black"
           imgSrc="https://placehold.co/300x150"
@@ -46,7 +47,7 @@ const Banner = () => {
           imgAlt="Mid-Autumn Festival toys with 50% discount"
           buttonText="MUA NGAY"
         />
-      </div>
+      </div> */}
       {/* <div className="flex justify-around mt-4">
                 <IconCard imgSrc="https://placehold.co/50x50" imgAlt="Phá Cỗ Trăng Rằm icon" text="Phá Cỗ Trăng Rằm" />
                 <IconCard imgSrc="https://placehold.co/50x50" imgAlt="MCBooks icon" text="MCBooks" />
