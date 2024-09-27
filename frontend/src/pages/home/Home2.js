@@ -30,12 +30,13 @@ export default function Home2() {
   const renderHomeContent = () => {
     return (
       <div className="w-full my-4">
+        <Banner/>
         <div className="flex">
         <div className="w-1/5">
           <Categories2 />
         </div>
         <div className="w-4/5 hide-scrollbar">
-          
+        
           {books ? (
             // <BooksList booksList={books} />
             <BooksList booksList={books} />
@@ -49,7 +50,7 @@ export default function Home2() {
         </div>
         </div>
 
-        <Banner/>
+       
         <SpecificCategory2 categoryname="Khoa học" />
         
         {/* <SpecificCategory2 categoryname="Viễn tưởng" /> */}

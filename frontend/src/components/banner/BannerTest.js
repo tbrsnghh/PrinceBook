@@ -8,7 +8,6 @@ const BannerMini = ({ src, alt }) => (
   </div>
 );
 
-
 const Banner = () => {
   return (
     <div className="justify-center flex p-2"
@@ -19,7 +18,7 @@ const Banner = () => {
     // data-aos-delay="1500"  // Thêm delay động
       >
     <div className="w-full max-w-7xl">
-      {/* <div className="flex space-x-4">
+      <div className="flex space-x-4">
         <BannerMini
           src="https://cdn0.fahasa.com/media/magentothem/banner7/TrangChuongTrinhThang9__HeroBanner_TrungThu_SlideBanner_840x320_2.jpg"
           alt="Hot Wheels banner with cars"
@@ -28,15 +27,15 @@ const Banner = () => {
           src="https://cdn0.fahasa.com/media/wysiwyg/Thang-09-2024/Resize_TrangDoiTacThang09_SubBanner_392x156.jpg"
           alt="Promotion banner for September"
         />
-      </div> */}
+      </div>
       {/* {Banner prince book} */}
       <div className="flex space-x-4" 
         // transition-style="in:wipe:down" 
       >
-        <BannerMini
+        {/* <BannerMini
           src={require("../../asset/img/banner1.png")}
           alt="Promotion banner for VNPay"
-        />
+        /> */}
       </div>
       {/* <div className="grid grid-cols-3 gap-4 mt-4">
         <PromotionCard

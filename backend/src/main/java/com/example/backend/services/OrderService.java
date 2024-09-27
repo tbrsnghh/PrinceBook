@@ -2,6 +2,7 @@
 package com.example.backend.services;
 
 import com.example.backend.dtos.OrderDTO;
+import com.example.backend.exceptions.ResourceNotFoundException;
 import com.example.backend.models.Order;
 import com.example.backend.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -51,12 +52,32 @@ public class OrderService implements IOrderService{
 
     @Override
     public Order updateOrder(Long id, OrderDTO orderDTO) {
-        return null;
+        Order existingOrder = orderRepository.findById(id).orElse(null);
+        if (existingOrder == null) {
+            return null;
+        }
+        existingOrder.setUserName(orderDTO.getUserName());
+        existingOrder.setEmail(orderDTO.getEmail());
+        existingOrder.setPhoneNumber(orderDTO.getPhoneNumber());
+        existingOrder.setAddress(orderDTO.getAddress());
+        existingOrder.setNote(orderDTO.getNote());
+        existingOrder.setStatus(orderDTO.getStatus());
+        existingOrder.setTotalPrice(orderDTO.getTotalPrice());
+        existingOrder.setShippingMethod(orderDTO.getShippingMethod());
+        existingOrder.setShippingAddress(orderDTO.getShippingAddress());
+        existingOrder.setShippingDate(orderDTO.getShippingDate() == null ? LocalDate.now() : orderDTO.getShippingDate());
+        existingOrder.setPaymentMethod(orderDTO.getPaymentMethod());
+
+        return orderRepository.save(existingOrder);
     }
 
     @Override
     public void deleteOrder(Long id) {
-
+        if (orderRepository.existsById(id)) {
+            orderRepository.deleteById(id);
+        } else {
+            throw new ResourceNotFoundException("Order with id " + id + " not found");
+        }
     }
 
     @Override

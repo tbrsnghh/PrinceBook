@@ -53,14 +53,14 @@ function BookDetailComp() {
               <span className="ml-2 text-gray-600">(10 đánh giá)</span>
               <span className="ml-4 text-gray-600">| Đã bán 3.3k</span>
             </div>
-            <div className="mt-4 bg-red-100 p-2 rounded-lg flex items-center">
+            {/* <div className="mt-4 bg-red-100 p-2 rounded-lg flex items-center">
               <span className="bg-red-500 text-white px-2 py-1 rounded-lg">
                 FLASH SALE
               </span>
               <span className="ml-2 text-red-500 font-bold text-lg">
                 00 : 02 : 40
               </span>
-            </div>
+            </div> */}
             <div className="mt-4">
               <span className="text-red-500 text-2xl font-bold">
                 {book.price ? 

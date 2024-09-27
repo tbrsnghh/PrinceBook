@@ -17,6 +17,7 @@ public class CategoryService implements ICategoryService {
     private final CategoryRepository categoryRepository;
 
 
+    // get all va phan trang
     @Override
     public Page<CategoryResponse> getAllCategoriesPaginated(PageRequest pageRequest) {
         return categoryRepository.findAll(pageRequest).map(category -> {
@@ -24,6 +25,7 @@ public class CategoryService implements ICategoryService {
         });
     }
 
+    // get all
     @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();

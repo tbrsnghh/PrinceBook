@@ -27,7 +27,9 @@
 
      @Override
      public OrderDetail saveOrderDetail(OrderDetailDTO orderDetailDTO) {
+         // kiem tra xem order da ton tai chua?
          Order orderExist = orderRepository.findById(orderDetailDTO.getOrderId()).orElse(null);
+         // kiem tra xem book da ton tai chua?
          Book bookExist = bookRepository.findById(orderDetailDTO.getBookId()).orElse(null);
          OrderDetail orderDetail = OrderDetail.builder()
                  .order(orderExist)
@@ -39,6 +41,7 @@
          return orderDetailRepository.save(orderDetail);
      }
 
+     // tim kiem theo orderDetail id
      @Override
      public OrderDetail getOrderDetailById(Long id) {
          return orderDetailRepository.findById(id)
@@ -55,6 +58,7 @@
         orderDetailRepository.deleteById(id);
      }
 
+     // tim kiem theo order id
      @Override
      public List<OrderDetail> findByOrderId(Long orderId) {
          return orderDetailRepository.findByOrderId(orderId);
