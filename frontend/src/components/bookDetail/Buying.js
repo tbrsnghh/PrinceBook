@@ -30,7 +30,12 @@ export default function Buying({ book, imagePath}) {
 
     navigate("/checkout", { state: { order } }); // Sử dụng state để gửi đơn hàng
   };
-
+  const setQuantityTru = () => {
+    quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
+  };
+  // const setQuantityCong = () => {
+  //   const [quantity, setQuantity] = useState(1);
+  // }
   return (
     <div className="bg-gray-100 p-4 rounded-lg">
       {/* className="w-1/3 fixed right-0 top-20 h-full bg-white p-4 shadow-lg" */}

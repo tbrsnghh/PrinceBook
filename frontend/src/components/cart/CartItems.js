@@ -60,7 +60,7 @@ export default function CartItems({ item, onToggleItem }) {
       <div className="basis-2/12 flex items-center justify-center">
         <button
           className="px-2 py-1 bg-gray-200 rounded-l-lg"
-          onClick={() => handleQuantityChange(quant - 1)}
+          onClick={() => handleQuantityChange(quant > 1 ? quant - 1 : 1 )}
         >
           -
         </button>

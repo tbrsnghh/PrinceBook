@@ -15,14 +15,14 @@ function BookDetailComp() {
   const {images} = useSelector((state) => state.books);
   const dispatch = useDispatch();
   const [imagePath, setImagePath] = useState("");
-
+  window.scrollTo(0, 0);
   useEffect(() => {  
     // dispatch(resetImages());
     dispatch(getBookDetail(id));
     dispatch(getAllImagesByBookId(id));
     setImagePath( images.length > 0 ? `http://localhost:8080/api/book/images/${images[0].imagePath}` : "");
-    window.scrollTo(0, 0);
-  }, [id]);    
+    
+  }, [images[0].imagePath]);    
 
   return (
     <div className="w-full max-w-7xl py-2 mx-auto">
